@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Veterinário - Clínica Veterinária</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="main-header">
+    <div class="container">
+        <div class="logo">
+            <h1>Clínica Pet</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="servicos.html">Serviços</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="login.html" class="btn btn-login">Login</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <h3>Veterinário</h3>
+        <nav>
+            <ul>
+                <li><a href="#" class="active"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-calendar-alt"></i> Minhas Consultas</a></li>
+                <li><a href="#"><i class="fas fa-user-friends"></i> Meus Pacientes</a></li>
+                <li><a href="#"><i class="fas fa-file-invoice"></i> Gerar Laudo</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Configurações</a></li>
+            </ul>
+        </nav>
+        <div class="logout-section">
+            <button class="btn btn-logout"><i class="fas fa-sign-out-alt"></i> Sair</button>
+        </div>
+    </aside>
+
+    <main class="dashboard-main">
+        <h2>Bem-vindo(a), Dr(a). Veterinário!</h2>
+
+        <div class="dashboard-cards-grid">
+            <div class="card">
+                <i class="fas fa-clipboard-list icon-lg"></i>
+                <div class="value">120</div>
+                <div class="label">Total de Consultas</div>
+            </div>
+            <div class="card">
+                <i class="fas fa-paw icon-lg"></i>
+                <div class="value">85</div>
+                <div class="label">Pacientes Ativos</div>
+            </div>
+            <div class="card">
+                <i class="fas fa-calendar-day icon-lg"></i>
+                <div class="value">7</div>
+                <div class="label">Consultas Hoje</div>
+            </div>
+            <div class="card">
+                <i class="fas fa-syringe icon-lg"></i>
+                <div class="value">30</div>
+                <div class="label">Vacinas Aplicadas (Mês)</div>
+            </div>
+        </div>
+
+        <div class="dashboard-content-grid-2-cols">
+            <section class="dashboard-section calendar-widget">
+                <div class="calendar-header">
+                    <button class="nav-arrows"><i class="fas fa-chevron-left"></i></button>
+                    <span class="month-year">Junho 2025</span>
+                    <button class="nav-arrows"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="calendar-days-grid">
+                    <div class="calendar-day-name">Dom</div>
+                    <div class="calendar-day-name">Seg</div>
+                    <div class="calendar-day-name">Ter</div>
+                    <div class="calendar-day-name">Qua</div>
+                    <div class="calendar-day-name">Qui</div>
+                    <div class="calendar-day-name">Sex</div>
+                    <div class="calendar-day-name">Sáb</div>
+                    <div></div><div></div><div></div><div></div><div></div><div class="calendar-date current-date">21</div><div>22</div>
+                    <div>23</div><div>24</div><div>25</div><div>26</div><div>27</div><div>28</div><div>29</div>
+                    <div>30</div>
+                </div>
+            </section>
+
+            <section class="dashboard-section">
+                <h4>Próximas Consultas</h4>
+                <table class="dashboard-table">
+                    <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Pet</th>
+                        <th>Proprietário</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>21 Jun</td>
+                        <td>Boby</td>
+                        <td>Petterson</td>
+                        <td><span class="status-badge checked-in">Checked in</span></td>
+                    </tr>
+                    <tr>
+                        <td>21 Jun</td>
+                        <td>Miau</td>
+                        <td>Clara</td>
+                        <td><span class="status-badge scheduled">Agendada</span></td>
+                    </tr>
+                    <tr>
+                        <td>22 Jun</td>
+                        <td>Thor</td>
+                        <td>Gustavo</td>
+                        <td><span class="status-badge scheduled">Agendada</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+        <section class="dashboard-section">
+            <h4>Pacientes Recentes</h4>
+            <table class="dashboard-table">
+                <thead>
+                <tr>
+                    <th>Nome Pet</th>
+                    <th>Proprietário</th>
+                    <th>Última Consulta</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Pipo</td>
+                    <td>Maria S.</td>
+                    <td>15 Jun 2025</td>
+                    <td><span class="status-badge completed">Concluída</span></td>
+                </tr>
+                <tr>
+                    <td>Luna</td>
+                    <td>João A.</td>
+                    <td>10 Jun 2025</td>
+                    <td><span class="status-badge completed">Concluída</span></td>
+                </tr>
+                <tr>
+                    <td>Buddy</td>
+                    <td>Ana L.</td>
+                    <td>05 Jun 2025</td>
+                    <td><span class="status-badge completed">Concluída</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</div>
+
+<footer class="main-footer">
+    <div class="container footer-grid">
+        <div class="footer-info">
+            <h4>ENDEREÇO</h4>
+            <p>R. Frei Antônio de Pádua, 683</p>
+            <p>Jardim Guanabara</p>
+            <p>Campinas/SP – CEP 13073-330</p>
+            <a href="http://maps.google.com/?q=Rua+Frei+Antônio+de+Pádua,+683,+Campinas+-+SP" target="_blank" class="map-link">Ver no mapa <i class="fas fa-map-marker-alt"></i></a>
+        </div>
+        <div class="footer-info">
+            <h4>HORÁRIO DE ATENDIMENTO</h4>
+            <p>Segunda a Sexta:</p>
+            <p>08:00 – 18:00</p>
+            <p>Sábados:</p>
+            <p>Apenas com horário agendado</p>
+        </div>
+        <div class="footer-info">
+            <h4>CONTATO</h4>
+            <p>Whatsapp: +55 19 3387-6403</p>
+            <p>Email: contato@clinicaveterinaria.com</p>
+            <div class="social-icons">
+                <a href="https://instagram.com/seuperfil" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.316499878168!2d-47.05432098495601!3d-22.93665328498845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8c70a1a01b0f5%3A0x7d0a6a5b2e5c8e3c!2sR.+Frei+Ant%C3%B4nio+de+P%C3%A1dua%2C+683+-+Jardim+Guanabara%2C+Campinas+-+SP%2C+13073-330!5e0!3m2!1spt-BR!2sbr!4v1678912345678!5m2!1spt-BR!2sbr" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 Clínica Veterinária. Todos os direitos reservados.</p>
+    </div>
+</footer>
+<style>
+    /* Estilos específicos para este dashboard */
+    .dashboard-content-grid-2-cols {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr; /* Calendário menor, tabela maior */
+        gap: 25px;
+        margin-bottom: 40px;
+    }
+
+    @media (max-width: 992px) {
+        .dashboard-content-grid-2-cols {
+            grid-template-columns: 1fr; /* Em telas menores, um embaixo do outro */
+        }
+    }
+</style>
+</body>
+</html>
