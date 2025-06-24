@@ -1,4 +1,4 @@
-package com.clinicaveterinaria.clinicaveterinaria.controller;
+/*package com.clinicaveterinaria.clinicaveterinaria.controller;
 
 import com.clinicaveterinaria.clinicaveterinaria.model.entity.Usuario;
 import com.clinicaveterinaria.clinicaveterinaria.service.AuthService;
@@ -59,4 +59,4 @@ public class UsuarioController {
         authService.deletarUsuario(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-}
+}*/

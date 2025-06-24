@@ -8,10 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
-    // Buscar um DonoDoPet pelo ID do usuário associado
-    Optional<Cliente> findByEmail(String email); // Se o email do DonoDoPet for o mesmo do Usuario
-    Optional<Cliente> findByUsername(String username); // Se o username do DonoDoPet for o mesmo do Usuario
-
-    // Pode adicionar métodos de busca por nome, telefone se necessário,
-    // mas geralmente a busca inicial seria pelo ID do usuário ou pela lista de todos.
+    Optional<Cliente> findByEmail(String email);
+    Optional<Cliente> findByCpf(String cpf);
 }

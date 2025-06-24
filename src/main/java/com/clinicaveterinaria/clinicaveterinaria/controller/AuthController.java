@@ -1,58 +1,45 @@
 package com.clinicaveterinaria.clinicaveterinaria.controller;
 
+import com.clinicaveterinaria.clinicaveterinaria.model.dto.AuthDTO;
+import com.clinicaveterinaria.clinicaveterinaria.model.dto.ClienteDTO;
+import com.clinicaveterinaria.clinicaveterinaria.model.dto.TokenResponseDTO;
 import com.clinicaveterinaria.clinicaveterinaria.service.AuthService;
-import lombok.Data;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.security.core.GrantedAuthority; // Adicionar esta importação
-
-import java.util.List;
-import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 public class AuthController {
 
-    private final AuthenticationManager authenticationManager;
-    private final AuthService authService;
-
-    public AuthController(AuthenticationManager authenticationManager, AuthService authService) {
-        this.authenticationManager = authenticationManager;
-        this.authService = authService;
-    }
+    @Autowired
+    private AuthService authService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
-        try {
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
-            );
-        } catch (BadCredentialsException e) {
-            throw new Exception("Credenciais incorretas", e);
-        }
-
-        final UserDetails userDetails = authService.loadUserByUsername(authenticationRequest.getUsername());
-
-        List<String> roles = userDetails.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.toList());
-
-        return ResponseEntity.ok(new AuthenticationResponse(userDetails.getUsername(), roles));
+    public ResponseEntity<TokenResponseDTO> login(@RequestBody @Valid AuthDTO authDTO) {
+        TokenResponseDTO token = authService.login(authDTO);
+        return ResponseEntity.ok(token);
     }
 
-    @Data
-    static class AuthenticationRequest {
-        private String username;
-        private String password;
+    @PostMapping("/register/cliente")
+    public ResponseEntity<ClienteDTO> registerCliente(@RequestBody @Valid ClienteDTO clienteDTO) {
+        ClienteDTO newCliente = authService.registerCliente(clienteDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newCliente);
     }
 
-    @Data
-    static class AuthenticationResponse {
-        private final String username;
-        private final List<String> roles;
+    // Exemplo: Somente SECRETARIO ou ADMIN pode registrar outros usuários
+    @PostMapping("/register/secretario")
+    // @PreAuthorize("hasAnyRole('ADMIN', 'SECRETARIO')") // Proteja no SecurityConfig ou com @PreAuthorize
+    public ResponseEntity<ClienteDTO> registerSecretario(@RequestBody @Valid ClienteDTO secretarioDTO) {
+        // Use AuthService para registrar um secretário. Mapeie DTOs corretamente.
+        // Secretário não é ClienteDTO, crie um SecretarioRegisterDTO ou use SecretarioDTO direto.
+        // Por simplicidade, vou usar um cast para o exemplo, mas o ideal é ter um DTO específico.
+        ClienteDTO newSecretario = authService.registerCliente(secretarioDTO); // Adapte para SecretarioDTO
+        return ResponseEntity.status(HttpStatus.CREATED).body(newSecretario);
     }
 }

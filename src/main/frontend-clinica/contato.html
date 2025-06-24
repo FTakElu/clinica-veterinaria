@@ -3,252 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contato - Clínica Veterinária</title>
+    <title>Contato - PetCare</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<header class="main-header">
+<header>
     <div class="container">
-        <div class="logo">
-            <h1>Clínica Pet</h1>
-        </div>
-        <nav class="main-nav">
+        <h1>Entre em Contato</h1>
+        <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="agendar-consulta.html">Agendamentos</a></li>
                 <li><a href="servicos.html">Serviços</a></li>
-                <li><a href="noticias.html">Notícias</a></li>
-                <li><a href="contato.html">Contato</a></li>
-                <li><a href="login.html" class="btn btn-login">Login</a></li>
+                <li><a href="contato.html" class="active">Contato</a></li>
             </ul>
         </nav>
     </div>
 </header>
 
-<main>
-    <section class="page-hero">
-        <div class="container">
-            <h2>Entre em Contato Conosco</h2>
-            <p>Estamos à disposição para atender você e seu pet com carinho e profissionalismo.</p>
+<main class="container">
+    <section id="contact-details">
+        <h2>Informações de Contato e Localização</h2>
+        <div class="contact-info-grid">
+            <div class="contact-block">
+                <h3>Endereço</h3>
+                <p>Rua da Paz, 123</p>
+                <p>Jardim Felicidade</p>
+                <p>Salto/SP – CEP 13320-000</p>
+                <p><strong><a href="https://maps.app.goo.gl/YourClinicLocation" target="_blank" style="color: var(--primary-purple); text-decoration: none;">Ver no Mapa</a></strong></p>
+            </div>
+            <div class="contact-block">
+                <h3>Horário de Atendimento</h3>
+                <p><strong>Segunda a Sexta:</strong></p>
+                <p>08:00 - 18:00</p>
+                <p><strong>Sábados:</strong></p>
+                <p>Apenas com horário agendado</p>
+            </div>
+            <div class="contact-block">
+                <h3>Fale Conosco</h3>
+                <p><strong>Telefone:</strong> (11) 98765-4321</p>
+                <p><strong>WhatsApp:</strong> (11) 98765-4321</p>
+                <p><strong>E-mail:</strong> contato@petcare.com.br</p>
+                <div style="display: flex; justify-content: center; gap: 20px;">
+                    <a href="https://wa.me/5511987654321" target="_blank"><i class="fab fa-whatsapp social-icon"></i></a>
+                    <a href="https://instagram.com/yourclinic" target="_blank"><i class="fab fa-instagram social-icon"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="location-map-container">
+            <h3>Nossa Localização no Mapa</h3>
+            <img src="assets/map-location.png" alt="Mapa da Clínica PetCare" style="max-width: 800px;">
         </div>
     </section>
 
-    <section class="contact-info-section section-content-wrapper">
-        <div class="container contact-grid">
-            <div class="info-card">
-                <i class="fas fa-phone-alt icon-contact"></i>
-                <h4>Telefone</h4>
-                <p>+55 19 3387-6403</p>
+    <section id="contact-form">
+        <h2>Envie uma Mensagem</h2>
+        <form id="mensagemForm">
+            <div class="form-group">
+                <label for="nomeContato">Seu Nome:</label>
+                <input type="text" id="nomeContato" name="nomeContato" required>
             </div>
-            <div class="info-card">
-                <i class="fas fa-envelope icon-contact"></i>
-                <h4>Email</h4>
-                <p>contato@clinicaveterinaria.com</p>
+            <div class="form-group">
+                <label for="emailContato">Seu E-mail:</label>
+                <input type="email" id="emailContato" name="emailContato" required>
             </div>
-            <div class="info-card">
-                <i class="fas fa-map-marker-alt icon-contact"></i>
-                <h4>Endereço</h4>
-                <p>R. Frei Antônio de Pádua, 683</p>
-                <p>Jardim Guanabara, Campinas - SP, 13073-330</p>
+            <div class="form-group">
+                <label for="assuntoContato">Assunto:</label>
+                <input type="text" id="assuntoContato" name="assuntoContato" required>
             </div>
-            <div class="info-card">
-                <i class="fas fa-clock icon-contact"></i>
-                <h4>Horário de Atendimento</h4>
-                <p>Segunda a Sexta: 08:00 - 18:00</p>
-                <p>Sábados: Apenas com horário agendado</p>
+            <div class="form-group">
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="mensagem" rows="6" required></textarea>
             </div>
-        </div>
-    </section>
-
-    <section class="contact-map-section section-content-wrapper bg-grey">
-        <div class="container">
-            <h3>Nossa Localização</h3>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.316499878168!2d-47.05432098495601!3d-22.93665328498845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8c70a1a01b0f5%3A0x7d0a6a5b2e5c8e3c!2sR.+Frei+Ant%C3%B4nio+de+P%C3%A1dua%2C+683+-+Jardim+Guanabara%2C+Campinas+-+SP%2C+13073-330!5e0!3m2!1spt-BR!2sbr!4v1678912345678!5m2!1spt-BR!2sbr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact-form-section section-content-wrapper">
-        <div class="container">
-            <h3>Envie-nos uma Mensagem</h3>
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">Nome:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="subject">Assunto:</label>
-                    <input type="text" id="subject" name="subject">
-                </div>
-                <div class="form-group">
-                    <label for="message">Mensagem:</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
-            </form>
-        </div>
+            <button type="submit">Enviar Mensagem</button>
+        </form>
     </section>
 </main>
 
-<footer class="main-footer">
-    <div class="container footer-grid">
-        <div class="footer-info">
-            <h4>ENDEREÇO</h4>
-            <p>R. Frei Antônio de Pádua, 683</p>
-            <p>Jardim Guanabara</p>
-            <p>Campinas/SP – CEP 13073-330</p>
-            <a href="http://maps.google.com/?q=Rua+Frei+Antônio+de+Pádua,+683,+Campinas+-+SP" target="_blank" class="map-link">Ver no mapa <i class="fas fa-map-marker-alt"></i></a>
-        </div>
-        <div class="footer-info">
-            <h4>HORÁRIO DE ATENDIMENTO</h4>
-            <p>Segunda a Sexta:</p>
-            <p>08:00 – 18:00</p>
-            <p>Sábados:</p>
-            <p>Apenas com horário agendado</p>
-        </div>
-        <div class="footer-info">
-            <h4>CONTATO</h4>
-            <p>Whatsapp: +55 19 3387-6403</p>
-            <p>Email: contato@clinicaveterinaria.com</p>
-            <div class="social-icons">
-                <a href="https://instagram.com/seuperfil" target="_blank"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-        <div class="footer-map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.316499878168!2d-47.05432098495601!3d-22.93665328498845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8c70a1a01b0f5%3A0x7d0a6a5b2e5c8e3c!2sR.+Frei+Ant%C3%B4nio+de+P%C3%A1dua%2C+683+-+Jardim+Guanabara%2C+Campinas+-+SP%2C+13073-330!5e0!3m2!1spt-BR!2sbr!4v1678912345678!5m2!1spt-BR!2sbr" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>© 2025 Clínica Veterinária. Todos os direitos reservados.</p>
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Clínica Veterinária PetCare. Todos os direitos reservados.</p>
+        <p>Entre em contato: contato@petcare.com.br</p>
     </div>
 </footer>
 
-<style>
-    /* Estilos específicos para contato.html */
-    .page-hero {
-        background: linear-gradient(rgba(127, 33, 235, 0.8), rgba(127, 33, 235, 0.8)), url('https://via.placeholder.com/1600x400?text=Contato+Pet') no-repeat center center/cover;
-        color: var(--text-light);
-        text-align: center;
-        padding: 80px 20px;
-    }
-
-    .page-hero h2 {
-        font-size: 3em;
-        margin-bottom: 15px;
-        color: var(--text-light);
-    }
-    .page-hero p {
-        font-size: 1.2em;
-        max-width: 700px;
-        margin: 0 auto;
-    }
-
-    .section-content-wrapper {
-        padding: 60px 0;
-    }
-
-    .contact-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
-        text-align: center;
-    }
-
-    .info-card {
-        background-color: var(--bg-light);
-        border: 1px solid var(--border-color);
-        border-radius: 10px;
-        padding: 30px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .info-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-    }
-
-    .info-card .icon-contact {
-        font-size: 3.5em;
-        color: var(--primary-color);
-        margin-bottom: 20px;
-    }
-
-    .info-card h4 {
-        font-size: 1.5em;
-        margin-bottom: 10px;
-        color: var(--primary-color);
-    }
-
-    .info-card p {
-        font-size: 1.1em;
-        color: #555;
-    }
-
-    .map-container {
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        margin-top: 40px;
-    }
-
-    .map-container iframe {
-        display: block; /* Remove espaço extra abaixo do iframe */
-    }
-
-    /* Contact Form Styles */
-    .contact-form {
-        max-width: 700px;
-        margin: 40px auto 0;
-        background-color: var(--bg-light);
-        padding: 40px;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-
-    .contact-form .form-group {
-        margin-bottom: 20px;
-    }
-
-    .contact-form label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: 600;
-        color: var(--text-dark);
-    }
-
-    .contact-form input[type="text"],
-    .contact-form input[type="email"],
-    .contact-form textarea {
-        width: 100%;
-        padding: 12px;
-        border: 1px solid var(--border-color);
-        border-radius: 5px;
-        font-family: 'Poppins', sans-serif;
-        font-size: 1em;
-    }
-
-    .contact-form textarea {
-        resize: vertical;
-    }
-
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-        outline: none;
-        border-color: var(--primary-color);
-        box-shadow: 0 0 0 2px rgba(127, 33, 235, 0.2);
-    }
-
-    .contact-form .btn-primary {
-        width: auto;
-        padding: 12px 30px;
-    }
-</style>
+<script src="js/script.js"></script>
 </body>
 </html>

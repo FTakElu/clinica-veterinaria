@@ -1,6 +1,6 @@
 package com.clinicaveterinaria.clinicaveterinaria.config;
 
-//import com.clinicaveterinaria.clinicaveterinaria.security.JwtAuthenticationFilter;
+import com.clinicaveterinaria.clinicaveterinaria.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

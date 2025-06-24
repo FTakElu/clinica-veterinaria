@@ -1,38 +1,50 @@
 package com.clinicaveterinaria.clinicaveterinaria.model.entity;
 
+import com.clinicaveterinaria.clinicaveterinaria.model.enums.StatusConsulta; // Criaremos este Enum
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "consultas")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Consulta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private LocalDate data;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Cliente cliente;
 
-    @Column(nullable = false)
-    private LocalTime horario;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "veterinario_id", nullable = false)
+    private Veterinario veterinario;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pet_id", nullable = false)
     private Pet pet;
 
-    @ManyToOne
-    @JoinColumn(name = "veterinario_id") // Pode ser nulo no agendamento inicial
-    private Veterinario veterinario;
+    @Column(nullable = false)
+    private LocalDateTime dataHora;
 
-    @Column(columnDefinition = "TEXT") // Para descrições mais longas
-    private String descricao; // Descrição do problema ou do atendimento
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private StatusConsulta status;
 
-    private String status; // Ex: "AGENDADA", "CONFIRMADA", "EM_ANDAMENTO", "CONCLUIDA", "CANCELADA"
+    @Column(columnDefinition = "TEXT") // Para armazenar relatórios maiores
+    private String diagnostico; // Resultado da consulta
+    @Column(columnDefinition = "TEXT")
+    private String tratamento; // Tratamento aplicado
+    @Column(columnDefinition = "TEXT")
+    private String observacoes; // Observações gerais
 
-    // Métodos agendarConsulta(), cancelarConsulta() seriam implementados no Service.
+    // Relatório pode ser um campo da consulta que só é preenchido após a finalização
+    // Ou uma entidade separada se o relatório for muito complexo
 }

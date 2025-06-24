@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatórios de Consulta - PetCare</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>Relatórios de Consulta</h1>
+    <nav>
+      <ul>
+        <li><a href="veterinario-dashboard.html">Dashboard</a></li>
+        <li><a href="consultas.html">Minhas Consultas</a></li>
+        <li><a href="relatorio-consulta.html" class="active">Relatórios</a></li>
+        <li><a href="#" id="logout-button">Sair</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section id="report-filters">
+    <h2>Gerar Relatório de Consultas</h2>
+    <form id="relatorioForm">
+      <div class="form-group">
+        <label for="dataInicio">Data de Início:</label>
+        <input type="date" id="dataInicio" name="dataInicio" required>
+      </div>
+      <div class="form-group">
+        <label for="dataFim">Data de Fim:</label>
+        <input type="date" id="dataFim" name="dataFim" required>
+      </div>
+      <div class="form-group">
+        <label for="veterinarioRelatorio">Veterinário (Opcional):</label>
+        <select id="veterinarioRelatorio" name="veterinarioRelatorio">
+          <option value="">Todos os Veterinários</option>
+          <option value="1">Dr. Pedro Almeida</option>
+          <option value="2">Dra. Ana Costa</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tipoServicoRelatorio">Tipo de Serviço (Opcional):</label>
+        <select id="tipoServicoRelatorio" name="tipoServicoRelatorio">
+          <option value="">Todos os Serviços</option>
+          <option value="consulta">Consulta Geral</option>
+          <option value="vacina">Vacinação</option>
+          <option value="cirurgia">Cirurgia</option>
+        </select>
+      </div>
+      <button type="submit">Gerar Relatório</button>
+    </form>
+  </section>
+
+  <section id="report-results" style="display: none;">
+    <h2>Resultados do Relatório</h2>
+    <div class="dashboard-grid">
+      <div class="dashboard-card">
+        <div class="icon-wrapper"><i class="fas fa-file-medical"></i></div>
+        <div class="info">
+          <h4 id="total-consultas-relatorio">0</h4>
+          <p>Total de Consultas</p>
+        </div>
+      </div>
+      <div class="dashboard-card">
+        <div class="icon-wrapper"><i class="fas fa-dog"></i></div>
+        <div class="info">
+          <h4 id="animais-atendidos-relatorio">0</h4>
+          <p>Animais Atendidos</p>
+        </div>
+      </div>
+      <div class="dashboard-card">
+        <div class="icon-wrapper"><i class="fas fa-dollar-sign"></i></div>
+        <div class="info">
+          <h4 id="receita-relatorio">0</h4>
+          <p>Receita Estimada</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Detalhes das Consultas</h3>
+    <table>
+      <thead>
+      <tr>
+        <th>Data</th>
+        <th>Pet</th>
+        <th>Dono</th>
+        <th>Veterinário</th>
+        <th>Serviço</th>
+        <th>Status</th>
+      </tr>
+      </thead>
+      <tbody id="relatorio-table-body">
+      <tr>
+        <td>15/06/2025</td>
+        <td>Amora</td>
+        <td>Fernanda Lima</td>
+        <td>Dr. Pedro Almeida</td>
+        <td>Consulta Geral</td>
+        <td><span class="status-badge completed">Concluída</span></td>
+      </tr>
+      <tr>
+        <td>12/06/2025</td>
+        <td>Toby</td>
+        <td>Roberto Costa</td>
+        <td>Dra. Ana Costa</td>
+        <td>Vacinação</td>
+        <td><span class="status-badge completed">Concluída</span></td>
+      </tr>
+      </tbody>
+    </table>
+    <button class="button secondary" style="margin-top: 20px;">Exportar para PDF</button>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2025 Clínica Veterinária PetCare. Todos os direitos reservados.</p>
+    <p>Entre em contato: contato@petcare.com.br</p>
+  </div>
+</footer>
+
+<script src="js/common.js"></script>
+<script src="js/veterinario.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.clinicaveterinaria.clinicaveterinaria.repository;
+/*package com.clinicaveterinaria.clinicaveterinaria.repository;
 
 import com.clinicaveterinaria.clinicaveterinaria.model.Vacina;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -26,4 +26,4 @@ public interface VacinaRepository extends JpaRepository<Vacina, Long> {
 
     // Listar vacinas de um pet com um certo nome
     List<Vacina> findByPetIdAndNomeContainingIgnoreCase(Long petId, String nome);
-}
+}*/

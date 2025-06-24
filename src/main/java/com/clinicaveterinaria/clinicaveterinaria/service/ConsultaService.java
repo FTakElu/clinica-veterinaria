@@ -1,16 +1,22 @@
 package com.clinicaveterinaria.clinicaveterinaria.service;
 
+import com.clinicaveterinaria.clinicaveterinaria.exception.ResourceNotFoundException;
+import com.clinicaveterinaria.clinicaveterinaria.model.dto.ConsultaDTO;
+import com.clinicaveterinaria.clinicaveterinaria.model.entity.Cliente;
 import com.clinicaveterinaria.clinicaveterinaria.model.entity.Consulta;
 import com.clinicaveterinaria.clinicaveterinaria.model.entity.Pet;
 import com.clinicaveterinaria.clinicaveterinaria.model.entity.Veterinario;
+import com.clinicaveterinaria.clinicaveterinaria.model.enums.StatusConsulta;
+import com.clinicaveterinaria.clinicaveterinaria.repository.ClienteRepository;
 import com.clinicaveterinaria.clinicaveterinaria.repository.ConsultaRepository;
 import com.clinicaveterinaria.clinicaveterinaria.repository.PetRepository;
 import com.clinicaveterinaria.clinicaveterinaria.repository.VeterinarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ConsultaService {
@@ -18,75 +24,107 @@ public class ConsultaService {
     @Autowired
     private ConsultaRepository consultaRepository;
     @Autowired
-    private PetRepository petRepository;
+    private ClienteRepository clienteRepository;
     @Autowired
     private VeterinarioRepository veterinarioRepository;
+    @Autowired
+    private PetRepository petRepository;
 
-    public Consulta agendarConsulta(Consulta consulta, Long petId, Long veterinarioId) {
-        Optional<Pet> petOptional = petRepository.findById(petId);
-        Optional<Veterinario> vetOptional = veterinarioRepository.findById(veterinarioId);
+    @Transactional(readOnly = true)
+    public List<ConsultaDTO> findAllConsultas() {
+        return consultaRepository.findAll().stream()
+                .map(this::convertToConsultaDTO)
+                .collect(Collectors.toList());
+    }
 
-        if (petOptional.isEmpty()) {
-            throw new RuntimeException("Pet não encontrado!");
+    @Transactional(readOnly = true)
+    public ConsultaDTO findConsultaById(Long id) {
+        Consulta consulta = consultaRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Consulta", "ID", id));
+        return convertToConsultaDTO(consulta);
+    }
+
+    @Transactional
+    public ConsultaDTO createConsulta(ConsultaDTO consultaDTO) {
+        Cliente cliente = clienteRepository.findById(consultaDTO.getClienteId())
+                .orElseThrow(() -> new ResourceNotFoundException("Cliente", "ID", consultaDTO.getClienteId()));
+        Veterinario veterinario = veterinarioRepository.findById(consultaDTO.getVeterinarioId())
+                .orElseThrow(() -> new ResourceNotFoundException("Veterinário", "ID", consultaDTO.getVeterinarioId()));
+        Pet pet = petRepository.findById(consultaDTO.getPetId())
+                .orElseThrow(() -> new ResourceNotFoundException("Pet", "ID", consultaDTO.getPetId()));
+
+        if (consultaRepository.existsByVeterinarioAndDataHora(veterinario, consultaDTO.getDataHora())) {
+            throw new RuntimeException("Veterinário já tem consulta agendada para este horário.");
         }
-        if (vetOptional.isEmpty()) {
-            throw new RuntimeException("Veterinário não encontrado!");
+
+        Consulta consulta = convertToConsultaEntity(consultaDTO);
+        consulta.setCliente(cliente);
+        consulta.setVeterinario(veterinario);
+        consulta.setPet(pet);
+        consulta.setStatus(StatusConsulta.AGENDADA);
+
+        Consulta savedConsulta = consultaRepository.save(consulta);
+        return convertToConsultaDTO(savedConsulta);
+    }
+
+    @Transactional
+    public ConsultaDTO updateConsulta(Long id, ConsultaDTO consultaDTO) {
+        Consulta existingConsulta = consultaRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Consulta", "ID", id));
+
+        Cliente cliente = clienteRepository.findById(consultaDTO.getClienteId())
+                .orElseThrow(() -> new ResourceNotFoundException("Cliente", "ID", consultaDTO.getClienteId()));
+        Veterinario veterinario = veterinarioRepository.findById(consultaDTO.getVeterinarioId())
+                .orElseThrow(() -> new ResourceNotFoundException("Veterinário", "ID", consultaDTO.getVeterinarioId()));
+        Pet pet = petRepository.findById(consultaDTO.getPetId())
+                .orElseThrow(() -> new ResourceNotFoundException("Pet", "ID", consultaDTO.getPetId()));
+
+        existingConsulta.setCliente(cliente);
+        existingConsulta.setVeterinario(veterinario);
+        existingConsulta.setPet(pet);
+        existingConsulta.setDataHora(consultaDTO.getDataHora());
+        existingConsulta.setStatus(consultaDTO.getStatus());
+        existingConsulta.setDiagnostico(consultaDTO.getDiagnostico());
+        existingConsulta.setTratamento(consultaDTO.getTratamento());
+        existingConsulta.setObservacoes(consultaDTO.getObservacoes());
+
+        Consulta updatedConsulta = consultaRepository.save(existingConsulta);
+        return convertToConsultaDTO(updatedConsulta);
+    }
+
+    @Transactional
+    public void deleteConsulta(Long id) {
+        if (!consultaRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Consulta", "ID", id);
         }
-
-        consulta.setPet(petOptional.get());
-        consulta.setVeterinario(vetOptional.get());
-        consulta.setStatus("AGENDADA");
-        return consultaRepository.save(consulta);
+        consultaRepository.deleteById(id);
     }
 
-    public List<Consulta> listarTodasConsultas() {
-        return consultaRepository.findAll();
+    // Métodos de Conversão (repetidos)
+    private ConsultaDTO convertToConsultaDTO(Consulta consulta) {
+        ConsultaDTO dto = new ConsultaDTO();
+        dto.setId(consulta.getId());
+        dto.setClienteId(consulta.getCliente().getId());
+        dto.setClienteNome(consulta.getCliente().getNomeCompleto());
+        dto.setVeterinarioId(consulta.getVeterinario().getId());
+        dto.setVeterinarioNome(consulta.getVeterinario().getNomeCompleto());
+        dto.setPetId(consulta.getPet().getId());
+        dto.setPetNome(consulta.getPet().getNome());
+        dto.setDataHora(consulta.getDataHora());
+        dto.setStatus(consulta.getStatus());
+        dto.setDiagnostico(consulta.getDiagnostico());
+        dto.setTratamento(consulta.getTratamento());
+        dto.setObservacoes(consulta.getObservacoes());
+        return dto;
     }
 
-    public List<Consulta> listarConsultasPorPet(Long petId) {
-        return consultaRepository.findByPetId(petId);
-    }
-
-    public List<Consulta> listarConsultasPorVeterinario(Long veterinarioId) {
-        return consultaRepository.findByVeterinarioId(veterinarioId);
-    }
-
-    public Consulta cancelarConsulta(Long id) {
-        return consultaRepository.findById(id).map(consulta -> {
-            consulta.setStatus("CANCELADA");
-            return consultaRepository.save(consulta);
-        }).orElseThrow(() -> new RuntimeException("Consulta não encontrada!"));
-    }
-
-    public Consulta atualizarStatusConsulta(Long id, String newStatus) {
-        return consultaRepository.findById(id).map(consulta -> {
-            consulta.setStatus(newStatus);
-            return consultaRepository.save(consulta);
-        }).orElseThrow(() -> new RuntimeException("Consulta não encontrada!"));
-    }
-
-    // Método para Veterinário: registrar atendimento (atualizar descrição e status)
-    public Consulta registrarAtendimento(Long consultaId, String descricaoAtendimento) {
-        return consultaRepository.findById(consultaId).map(consulta -> {
-            consulta.setDescricao(descricaoAtendimento);
-            consulta.setStatus("CONCLUIDA"); // Ou outro status apropriado
-            return consultaRepository.save(consulta);
-        }).orElseThrow(() -> new RuntimeException("Consulta não encontrada!"));
-    }
-
-    // Método para gerar relatório de consulta (lógica simples aqui, mais complexa em um sistema real)
-    public String gerarRelatorioDeConsulta(Long consultaId) {
-        Optional<Consulta> consultaOptional = consultaRepository.findById(consultaId);
-        if (consultaOptional.isPresent()) {
-            Consulta consulta = consultaOptional.get();
-            return "Relatório da Consulta ID: " + consulta.getId() + "\n" +
-                    "Data: " + consulta.getData() + " Horário: " + consulta.getHorario() + "\n" +
-                    "Pet: " + consulta.getPet().getNome() + " (Dono: " + consulta.getPet().getCliente().getNome() + ")\n" +
-                    "Veterinário: " + consulta.getVeterinario().getNome() + "\n" +
-                    "Descrição do Atendimento: " + consulta.getDescricao() + "\n" +
-                    "Status: " + consulta.getStatus();
-        } else {
-            throw new RuntimeException("Consulta não encontrada para gerar relatório!");
-        }
+    private Consulta convertToConsultaEntity(ConsultaDTO dto) {
+        Consulta consulta = new Consulta();
+        consulta.setId(dto.getId());
+        consulta.setDataHora(dto.getDataHora());
+        consulta.setDiagnostico(dto.getDiagnostico());
+        consulta.setTratamento(dto.getTratamento());
+        consulta.setObservacoes(dto.getObservacoes());
+        return consulta;
     }
 }

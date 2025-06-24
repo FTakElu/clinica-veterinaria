@@ -1,7 +1,8 @@
 package com.clinicaveterinaria.clinicaveterinaria.controller;
 
-import com.clinicaveterinaria.clinicaveterinaria.model.Vacina;
-import com.clinicaveterinaria.clinicaveterinaria.service.VacinaService;
+import com.clinicaveterinaria.clinicaveterinaria.model.dto.AplicacaoVacinaDTO;
+import com.clinicaveterinaria.clinicaveterinaria.service.VacinaService; // Renomeado para AplicacaoVacinaService
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,57 +12,42 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/vacinas")
-public class VacinaController {
+@RequestMapping("/vacinas/aplicacoes") // Endpoint mais específico para aplicações de vacina
+@PreAuthorize("hasAnyRole('ADMIN', 'SECRETARIO', 'VETERINARIO')") // Veterinário também pode ver e registrar as suas
+public class VacinaController { // Renomeado para AplicacaoVacinaController
 
     @Autowired
-    private VacinaService vacinaService;
+    private VacinaService vacinaService; // Injetando o serviço de Aplicação de Vacina
 
-    // Veterinário ou Secretário podem registrar aplicação de vacina
-    @PreAuthorize("hasAnyRole('VETERINARIO', 'SECRETARIO')")
-    @PostMapping("/pet/{petId}/veterinario/{veterinarioId}")
-    public ResponseEntity<Vacina> registrarAplicacaoVacina(@RequestBody Vacina vacina, @PathVariable Long petId, @PathVariable Long veterinarioId) {
-        Vacina novaVacina = vacinaService.registrarAplicacaoVacina(vacina, petId, veterinarioId);
-        return new ResponseEntity<>(novaVacina, HttpStatus.CREATED);
-    }
-
-    // Todos podem listar vacinas aplicadas aos seus pets ou todos os pets
-    @PreAuthorize("hasAnyRole('COMUM', 'VETERINARIO', 'SECRETARIO', 'ADMINISTRADOR')")
     @GetMapping
-    public ResponseEntity<List<Vacina>> listarTodasVacinasAplicadas() {
-        // Lógica de segurança para filtrar por role
-        List<Vacina> vacinas = vacinaService.listarTodasVacinasAplicadas();
-        return new ResponseEntity<>(vacinas, HttpStatus.OK);
+    public ResponseEntity<List<AplicacaoVacinaDTO>> getAllAplicacoesVacina() {
+        return ResponseEntity.ok(vacinaService.findAllAplicacoesVacina());
     }
 
-    @PreAuthorize("hasAnyRole('COMUM', 'VETERINARIO', 'SECRETARIO', 'ADMINISTRADOR')")
-    @GetMapping("/pet/{petId}")
-    public ResponseEntity<List<Vacina>> listarVacinasAplicadasPorPet(@PathVariable Long petId) {
-        List<Vacina> vacinas = vacinaService.listarVacinasAplicadasPorPet(petId);
-        return new ResponseEntity<>(vacinas, HttpStatus.OK);
-    }
-
-    @PreAuthorize("hasAnyRole('VETERINARIO', 'SECRETARIO', 'ADMINISTRADOR')")
     @GetMapping("/{id}")
-    public ResponseEntity<Vacina> buscarVacinaAplicadaPorId(@PathVariable Long id) {
-        return vacinaService.buscarVacinaAplicadaPorId(id)
-                .map(vacina -> new ResponseEntity<>(vacina, HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<AplicacaoVacinaDTO> getAplicacaoVacinaById(@PathVariable Long id) {
+        return ResponseEntity.ok(vacinaService.findAplicacaoVacinaById(id));
     }
 
-    // Secretário ou Veterinário podem atualizar
-    @PreAuthorize("hasAnyRole('VETERINARIO', 'SECRETARIO')")
+    // Secretário pode criar uma aplicação de vacina
+    @PostMapping
+    @PreAuthorize("hasRole('SECRETARIO')")
+    public ResponseEntity<AplicacaoVacinaDTO> createAplicacaoVacina(@RequestBody @Valid AplicacaoVacinaDTO aplicacaoVacinaDTO) {
+        AplicacaoVacinaDTO novaAplicacao = vacinaService.createAplicacaoVacina(aplicacaoVacinaDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(novaAplicacao);
+    }
+
     @PutMapping("/{id}")
-    public ResponseEntity<Vacina> atualizarVacinaAplicada(@PathVariable Long id, @RequestBody Vacina vacina) {
-        Vacina vacinaAtualizada = vacinaService.atualizarVacinaAplicada(id, vacina);
-        return new ResponseEntity<>(vacinaAtualizada, HttpStatus.OK);
+    @PreAuthorize("hasAnyRole('ADMIN', 'SECRETARIO', 'VETERINARIO')") // Pode ser editada por quem registrou ou admin/secretario
+    public ResponseEntity<AplicacaoVacinaDTO> updateAplicacaoVacina(@PathVariable Long id, @RequestBody @Valid AplicacaoVacinaDTO aplicacaoVacinaDTO) {
+        AplicacaoVacinaDTO updatedAplicacao = vacinaService.updateAplicacaoVacina(id, aplicacaoVacinaDTO);
+        return ResponseEntity.ok(updatedAplicacao);
     }
 
-    // Secretário ou Administrador pode deletar (se for permitido remover um registro de aplicação)
-    @PreAuthorize("hasAnyRole('SECRETARIO', 'ADMINISTRADOR')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarVacinaAplicada(@PathVariable Long id) {
-        vacinaService.deletarVacinaAplicada(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasAnyRole('ADMIN', 'SECRETARIO')") // Somente admin/secretario podem deletar
+    public void deleteAplicacaoVacina(@PathVariable Long id) {
+        vacinaService.deleteAplicacaoVacina(id);
     }
 }

@@ -1,22 +1,40 @@
 package com.clinicaveterinaria.clinicaveterinaria.model.entity;
 
-import jakarta.persistence.*;
+import com.clinicaveterinaria.clinicaveterinaria.model.enums.UsuarioRole;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "veterinarios")
+@PrimaryKeyJoinColumn(name = "id")
 @Data
 @EqualsAndHashCode(callSuper = true)
-@PrimaryKeyJoinColumn(name = "usuario_id")
+@NoArgsConstructor
 public class Veterinario extends Usuario {
 
-    @Column(nullable = false)
-    private String nome;
+    private String nomeCompleto;
+    private String crmv; // Registro no conselho de medicina veterinária
+    private String especialidade;
 
-    private String sobrenome;
+    @OneToMany(mappedBy = "veterinario")
+    private List<Consulta> consultas;
 
-    private String especializacao; // Ex: Cardiologia, Dermatologia
+    @OneToMany(mappedBy = "veterinarioResponsavel")
+    private List<AplicacaoVacina> aplicacoesVacinas;
 
-    // Métodos atenderPet(), registrarVacina() seriam implementados no Service.
+    public Veterinario(String email, String senha, String nomeCompleto, String crmv, String especialidade) {
+        super(email, senha, UsuarioRole.VETERINARIO);
+        this.nomeCompleto = nomeCompleto;
+        this.crmv = crmv;
+        this.especialidade = especialidade;
+    }
 }
+
+

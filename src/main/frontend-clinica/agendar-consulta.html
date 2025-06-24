@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Consulta - PetCare</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>Agendar Nova Consulta</h1>
+        <nav>
+            <ul>
+                <li><a href="cliente-dashboard.html">Dashboard</a></li>
+                <li><a href="meus-pets.html">Meus Pets</a></li>
+                <li><a href="agendar-consulta.html" class="active">Agendar Consulta</a></li>
+                <li><a href="#" id="logout-button">Sair</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section id="schedule-form">
+        <h2>Preencha os Dados para o Agendamento</h2>
+        <form id="agendamentoForm">
+            <div class="form-group">
+                <label for="cliente">Cliente:</label>
+                <select id="cliente" name="cliente" required>
+                    <option value="">Selecione seu nome (ou um cliente)</option>
+                    <option value="1">João Silva</option>
+                    <option value="2">Maria Oliveira</option>
+                    <option value="3">Carlos Santos</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="animal">Animal:</label>
+                <select id="animal" name="animal" required>
+                    <option value="">Selecione o animal</option>
+                    <option value="1">Rex (Cachorro)</option>
+                    <option value="2">Mimi (Gato)</option>
+                    <option value="3">Bob (Cachorro)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="servico">Serviço Desejado:</label>
+                <select id="servico" name="servico" required>
+                    <option value="">Selecione o serviço</option>
+                    <option value="consulta">Consulta Geral</option>
+                    <option value="vacina">Vacinação</option>
+                    <option value="banhoTosa">Banho e Tosa</option>
+                    <option value="cirurgia">Cirurgia</option>
+                    <option value="exames">Exames Laboratoriais</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="veterinario">Veterinário Preferencial (Opcional):</label>
+                <select id="veterinario" name="veterinario">
+                    <option value="">Qualquer Veterinário</option>
+                    <option value="1">Dr. Pedro Almeida</option>
+                    <option value="2">Dra. Ana Costa</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="dataHora">Data e Hora:</label>
+                <input type="datetime-local" id="dataHora" name="dataHora" required>
+            </div>
+
+            <div class="form-group">
+                <label for="observacoes">Observações (Opcional):</label>
+                <textarea id="observacoes" name="observacoes" rows="4" placeholder="Alguma observação importante para o agendamento?"></textarea>
+            </div>
+
+            <button type="submit">Confirmar Agendamento</button>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Clínica Veterinária PetCare. Todos os direitos reservados.</p>
+        <p>Entre em contato: contato@petcare.com.br</p>
+    </div>
+</footer>
+
+<script src="js/common.js"></script>
+<script src="js/agendamentos.js"></script>
+</body>
+</html>

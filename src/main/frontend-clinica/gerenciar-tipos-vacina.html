@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciar Tipos de Vacina - PetCare</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>Gerenciar Tipos de Vacina</h1>
+    <nav>
+      <ul>
+        <li><a href="secretario-dashboard.html">Dashboard</a></li>
+        <li><a href="agendar-consulta.html">Agendar Consulta</a></li>
+        <li><a href="registrar-vacina.html">Registrar Vacina</a></li>
+        <li><a href="gerenciar-tipos-vacina.html" class="active">Tipos de Vacina</a></li>
+        <li><a href="#" id="logout-button">Sair</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section id="new-vaccine-type-form">
+    <h2>Adicionar Novo Tipo de Vacina</h2>
+    <form id="tipoVacinaForm">
+      <div class="form-group">
+        <label for="nomeTipoVacina">Nome da Vacina:</label>
+        <input type="text" id="nomeTipoVacina" name="nomeTipoVacina" required>
+      </div>
+      <div class="form-group">
+        <label for="intervaloDias">Intervalo para Próxima Dose (em dias, opcional):</label>
+        <input type="number" id="intervaloDias" name="intervaloDias" placeholder="Ex: 365 para anual">
+      </div>
+      <div class="form-group">
+        <label for="descricaoTipoVacina">Descrição:</label>
+        <textarea id="descricaoTipoVacina" name="descricaoTipoVacina" rows="3"></textarea>
+      </div>
+      <button type="submit">Adicionar Tipo de Vacina</button>
+    </form>
+  </section>
+
+  <section id="vaccine-types-list">
+    <h2>Tipos de Vacina Cadastrados</h2>
+    <p>Lista de vacinas disponíveis para registro.</p>
+    <table>
+      <thead>
+      <tr>
+        <th>Nome da Vacina</th>
+        <th>Intervalo (dias)</th>
+        <th>Descrição</th>
+        <th>Ações</th>
+      </tr>
+      </thead>
+      <tbody id="tipos-vacina-table">
+      <tr>
+        <td>V8</td>
+        <td>365</td>
+        <td>Protege contra cinomose, parvovirose, hepatite infecciosa, adenovirose, parainfluenza, coronavirose e leptospirose.</td>
+        <td>
+          <div class="button-group">
+            <button class="button info button-small">Editar</button>
+            <button class="button delete button-small">Remover</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Antirrábica</td>
+        <td>365</td>
+        <td>Proteção contra raiva. Obrigatória por lei.</td>
+        <td>
+          <div class="button-group">
+            <button class="button info button-small">Editar</button>
+            <button class="button delete button-small">Remover</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>V10</td>
+        <td>365</td>
+        <td>Versão ampliada da V8, inclui proteção para mais tipos de leptospirose.</td>
+        <td>
+          <div class="button-group">
+            <button class="button info button-small">Editar</button>
+            <button class="button delete button-small">Remover</button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2025 Clínica Veterinária PetCare. Todos os direitos reservados.</p>
+    <p>Entre em contato: contato@petcare.com.br</p>
+  </div>
+</footer>
+
+<script src="js/common.js"></script>
+<script src="js/secretario.js"></script>
+</body>
+</html>

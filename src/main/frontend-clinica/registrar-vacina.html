@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Vacina - PetCare</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>Registrar Vacina</h1>
+        <nav>
+            <ul>
+                <li><a href="secretario-dashboard.html">Dashboard</a></li>
+                <li><a href="agendar-consulta.html">Agendar Consulta</a></li>
+                <li><a href="registrar-vacina.html" class="active">Registrar Vacina</a></li>
+                <li><a href="gerenciar-tipos-vacina.html">Tipos de Vacina</a></li>
+                <li><a href="#" id="logout-button">Sair</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section id="vaccine-registration-form">
+        <h2>Registro de Aplicação de Vacina</h2>
+        <form id="registroVacinaForm">
+            <div class="form-group">
+                <label for="cliente">Cliente:</label>
+                <select id="cliente" name="cliente" required>
+                    <option value="">Selecione o Cliente</option>
+                    <option value="1">João Silva</option>
+                    <option value="2">Maria Oliveira</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="animal">Animal:</label>
+                <select id="animal" name="animal" required>
+                    <option value="">Selecione o Animal</option>
+                    <option value="1">Rex (Cachorro)</option>
+                    <option value="2">Mimi (Gato)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tipoVacina">Tipo de Vacina:</label>
+                <select id="tipoVacina" name="tipoVacina" required>
+                    <option value="">Selecione a Vacina</option>
+                    <option value="1">V8</option>
+                    <option value="2">Antirrábica</option>
+                    <option value="3">V10</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dataAplicacao">Data da Aplicação:</label>
+                <input type="date" id="dataAplicacao" name="dataAplicacao" required>
+            </div>
+            <div class="form-group">
+                <label for="proximaDose">Data da Próxima Dose (Opcional):</label>
+                <input type="date" id="proximaDose" name="proximaDose">
+            </div>
+            <div class="form-group">
+                <label for="lote">Número do Lote:</label>
+                <input type="text" id="lote" name="lote" required>
+            </div>
+            <div class="form-group">
+                <label for="veterinario">Veterinário Aplicador:</label>
+                <select id="veterinario" name="veterinario" required>
+                    <option value="">Selecione o Veterinário</option>
+                    <option value="1">Dr. Pedro Almeida</option>
+                    <option value="2">Dra. Ana Costa</option>
+                </select>
+            </div>
+            <button type="submit">Registrar Vacina</button>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Clínica Veterinária PetCare. Todos os direitos reservados.</p>
+        <p>Entre em contato: contato@petcare.com.br</p>
+    </div>
+</footer>
+
+<script src="js/common.js"></script>
+<script src="js/secretario.js"></script>
+</body>
+</html>

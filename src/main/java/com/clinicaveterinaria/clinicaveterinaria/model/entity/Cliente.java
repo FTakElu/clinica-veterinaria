@@ -1,9 +1,7 @@
 package com.clinicaveterinaria.clinicaveterinaria.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.PrimaryKeyJoinColumn;
-import jakarta.persistence.Table;
+import com.clinicaveterinaria.clinicaveterinaria.model.enums.UsuarioRole;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -12,24 +10,26 @@ import java.util.List;
 
 @Entity
 @Table(name = "clientes")
-@PrimaryKeyJoinColumn(name = "id") // Coluna de junção com a tabela 'users'
+@PrimaryKeyJoinColumn(name = "id") // Coluna de junção com a tabela 'usuarios'
 @Data
-@EqualsAndHashCode(callSuper = true) // Importante para herança com Lombok
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class Cliente extends Usuario {
+
     private String nomeCompleto;
     private String telefone;
-    // Outros campos específicos do cliente
+    private String cpf; // Adicionei CPF, comum para clientes
 
-    @OneToMany(mappedBy = "dono")
+    @OneToMany(mappedBy = "dono", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pet> pets;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Consulta> consultas;
 
-    public Cliente(String email, String password, String nomeCompleto, String telefone) {
-        super(null, email, password,  com.clinicaveterinaria.clinicaveterinaria.model.enums.UsuarioRole.CLIENTE);
+    public Cliente(String email, String senha, String nomeCompleto, String telefone, String cpf) {
+        super(email, senha, UsuarioRole.CLIENTE);
         this.nomeCompleto = nomeCompleto;
         this.telefone = telefone;
+        this.cpf = cpf;
     }
 }

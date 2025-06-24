@@ -1,4 +1,4 @@
-package com.clinicaveterinaria.clinicaveterinaria.model;
+/*package com.clinicaveterinaria.clinicaveterinaria.model;
 
 import com.clinicaveterinaria.clinicaveterinaria.model.entity.Pet;
 import com.clinicaveterinaria.clinicaveterinaria.model.entity.Veterinario;
@@ -44,4 +44,4 @@ public class Vacina {
     // a entidade Vacina precisaria do pet e do veterinário que aplicou.
     // Ajustei a Vacina para ser uma APLICAÇÃO de vacina em um pet.
     // Se quiser gerenciar TIPOS de vacina (Pfizer, MSD, etc.), precisaria de outra entidade (TipoVacina).
-}
+}*/

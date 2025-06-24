@@ -1,20 +1,26 @@
 package com.clinicaveterinaria.clinicaveterinaria.model.entity;
 
-import jakarta.persistence.*;
+import com.clinicaveterinaria.clinicaveterinaria.model.enums.UsuarioRole;
+import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "secretarios")
+@PrimaryKeyJoinColumn(name = "id")
 @Data
 @EqualsAndHashCode(callSuper = true)
-@PrimaryKeyJoinColumn(name = "usuario_id")
+@NoArgsConstructor
 public class Secretario extends Usuario {
 
-    @Column(nullable = false)
-    private String nome;
+    private String nomeCompleto;
+    // Outros campos específicos do secretário, se houver
 
-    private String sobrenome;
-
-    // Métodos gerenciarConsultas(), cadastrarUsuario(), etc., seriam implementados no Service.
+    public Secretario(String email, String senha, String nomeCompleto) {
+        super(email, senha, UsuarioRole.SECRETARIO);
+        this.nomeCompleto = nomeCompleto;
+    }
 }

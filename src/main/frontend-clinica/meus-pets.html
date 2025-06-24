@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Pets - PetCare</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>Meus Pets</h1>
+        <nav>
+            <ul>
+                <li><a href="cliente-dashboard.html">Dashboard</a></li>
+                <li><a href="meus-pets.html" class="active">Meus Pets</a></li>
+                <li><a href="agendar-consulta.html">Agendar Consulta</a></li>
+                <li><a href="#" id="logout-button">Sair</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section id="new-pet-form">
+        <h2>Cadastrar Novo Pet</h2>
+        <form id="petForm">
+            <div class="form-group">
+                <label for="nomePet">Nome do Pet:</label>
+                <input type="text" id="nomePet" name="nomePet" required>
+            </div>
+            <div class="form-group">
+                <label for="especie">Espécie:</label>
+                <input type="text" id="especie" name="especie" placeholder="Cachorro, Gato, Pássaro..." required>
+            </div>
+            <div class="form-group">
+                <label for="raca">Raça:</label>
+                <input type="text" id="raca" name="raca" placeholder="Labrador, Siamês, Calopsita...">
+            </div>
+            <div class="form-group">
+                <label for="dataNascimento">Data de Nascimento:</label>
+                <input type="date" id="dataNascimento" name="dataNascimento">
+            </div>
+            <div class="form-group">
+                <label for="sexo">Sexo:</label>
+                <select id="sexo" name="sexo">
+                    <option value="">Selecione</option>
+                    <option value="MACHO">Macho</option>
+                    <option value="FEMEA">Fêmea</option>
+                </select>
+            </div>
+            <button type="submit">Cadastrar Pet</button>
+        </form>
+    </section>
+
+    <section id="my-pets-list">
+        <h2>Seus Pets Cadastrados</h2>
+        <p>Clique para ver detalhes do histórico e consultas.</p>
+        <ul class="data-list" id="pets-registered-list">
+            <li>
+                <div>
+                    <p><strong>Nome:</strong> Rex</p>
+                    <p><strong>Espécie:</strong> Cachorro</p>
+                    <p><strong>Raça:</strong> Golden Retriever</p>
+                </div>
+                <div class="actions">
+                    <a href="detalhe-pet.html?id=1" class="button info button-small">Detalhes</a>
+                    <button class="button delete button-small">Remover</button>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <p><strong>Nome:</strong> Luna</p>
+                    <p><strong>Espécie:</strong> Gato</p>
+                    <p><strong>Raça:</strong> Persa</p>
+                </div>
+                <div class="actions">
+                    <a href="detalhe-pet.html?id=2" class="button info button-small">Detalhes</a>
+                    <button class="button delete button-small">Remover</button>
+                </div>
+            </li>
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Clínica Veterinária PetCare. Todos os direitos reservados.</p>
+        <p>Entre em contato: contato@petcare.com.br</p>
+    </div>
+</footer>
+
+<script src="js/common.js"></script>
+<script src="js/cliente.js"></script>
+</body>
+</html>

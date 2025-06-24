@@ -13,12 +13,13 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "usuarios")
+@Inheritance(strategy = InheritanceType.JOINED) // Estratégia para herança
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED) // Estratégia de herança
-public class Usuario implements UserDetails { // Implementa UserDetails
+public abstract class Usuario implements UserDetails { // Classe abstrata para ser herdada
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,22 +28,40 @@ public class Usuario implements UserDetails { // Implementa UserDetails
     private String email;
 
     @Column(nullable = false)
-    private String password;
+    private String senha; // Renomeado de 'password' para 'senha'
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private UsuarioRole role;
 
+    public Usuario(String email, String senha, UsuarioRole role) {
+        this.email = email;
+        this.senha = senha;
+        this.role = role;
+    }
+
     // Métodos de UserDetails
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.role == UsuarioRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_VETERINARIO"), new SimpleGrantedAuthority("ROLE_SECRETARIO"), new SimpleGrantedAuthority("ROLE_CLIENTE"));
+        if (this.role == UsuarioRole.ADMIN) {
+            return List.of(
+                    new SimpleGrantedAuthority("ROLE_ADMIN"),
+                    new SimpleGrantedAuthority("ROLE_VETERINARIO"),
+                    new SimpleGrantedAuthority("ROLE_SECRETARIO"),
+                    new SimpleGrantedAuthority("ROLE_CLIENTE")
+            );
+        }
         return List.of(new SimpleGrantedAuthority("ROLE_" + this.role.name()));
     }
 
     @Override
+    public String getPassword() {
+        return this.senha;
+    }
+
+    @Override
     public String getUsername() {
-        return email;
+        return this.email;
     }
 
     @Override
