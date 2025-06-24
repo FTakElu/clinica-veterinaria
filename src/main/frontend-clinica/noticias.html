@@ -3,109 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notícias - Clínica Veterinária Pet Feliz</title>
+    <title>Notícias - Clínica Pet</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <header>
-    <div class="container">
-        <h1>Clínica Veterinária Pet Feliz</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Início</a></li>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Clínica Pet</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
                 <li><a href="servicos.html">Serviços</a></li>
                 <li><a href="noticias.html">Notícias</a></li>
                 <li><a href="contato.html">Contato</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li id="navDashboardLink" style="display:none;"><a href="#" id="dashboardLink">Dashboard</a></li>
-                <li id="navLogoutLink" style="display:none;"><a href="#" id="logoutButton">Sair</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
             </ul>
-        </nav>
-    </div>
+        </div>
+    </nav>
 </header>
 
-<main class="container">
-    <section>
+<main class="news-page">
+    <div class="container">
         <h2>Últimas Notícias e Dicas</h2>
         <div class="news-list">
             <article class="news-item">
-                <h3>Importância da Vacinação Anual em Pets</h3>
-                <p class="news-date">Publicado em: 23 de Junho de 2025</p>
-                <p>A vacinação anual é crucial para proteger seu pet de diversas doenças contagiosas e potencialmente fatais...</p>
-                <a href="#" class="button-small">Leia Mais</a>
+                <img src="assets/images/bravecto.jpg" alt="Bravecto 365">
+                <h3>Bravecto 365: proteção prolongada contra pulgas e carrapatos</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <a href="#">Leia mais</a>
             </article>
             <article class="news-item">
-                <h3>Como Identificar Sinais de Estresse em Cães e Gatos</h3>
-                <p class="news-date">Publicado em: 15 de Junho de 2025</p>
-                <p>Animais de estimação também podem sofrer de estresse. Saiba reconhecer os sintomas e como ajudar seu amigo...</p>
-                <a href="#" class="button-small">Leia Mais</a>
+                <img src="assets/images/adestramento.jpg" alt="Adestramento de Cães">
+                <h3>Adestramento de Cães: Tudo O Que Você Precisa Saber</h3>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <a href="#">Leia mais</a>
             </article>
             <article class="news-item">
-                <h3>Alimentação Saudável para Filhotes: O Guia Completo</h3>
-                <p class="news-date">Publicado em: 01 de Junho de 2025</p>
-                <p>A nutrição adequada nos primeiros meses de vida é fundamental para o desenvolvimento do seu filhote...</p>
-                <a href="#" class="button-small">Leia Mais</a>
+                <img src="assets/images/vacinas.jpg" alt="Vacinas Para Cachorro E Gato">
+                <h3>Vacinas Para Cachorro E Gato: Tudo O Que Você Precisa Saber</h3>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <a href="#">Leia mais</a>
             </article>
         </div>
-    </section>
+    </div>
 </main>
 
-<footer>
-    <div class="container">
-        <p>&copy; 2025 Clínica Veterinária Pet Feliz. Todos os direitos reservados.</p>
-        <p>Avenida dos Três Poderes, 75, Salto, SP - Instituto Federal de São Paulo Campus Salto</p>
-    </div>
+<footer class="footer">
 </footer>
 
-<script src="js/api.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/common.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Lógica do template para links de dashboard/logout
-        const token = localStorage.getItem('jwt_token');
-        const role = localStorage.getItem('user_role');
-        const dashboardLink = document.getElementById('navDashboardLink');
-        const logoutLink = document.getElementById('navLogoutLink');
-        const dashboardAnchor = document.getElementById('dashboardLink');
-        const logoutButton = document.getElementById('logoutButton');
-
-        if (token && role) {
-            if (dashboardLink && logoutLink) {
-                dashboardLink.style.display = 'inline';
-                logoutLink.style.display = 'inline';
-                if (dashboardAnchor) {
-                    switch (role) {
-                        case 'CLIENTE':
-                            dashboardAnchor.href = 'cliente-dashboard.html';
-                            break;
-                        case 'SECRETARIO':
-                            dashboardAnchor.href = 'secretario-dashboard.html';
-                            break;
-                        case 'VETERINARIO':
-                            dashboardAnchor.href = 'veterinario-dashboard.html';
-                            break;
-                        default:
-                            dashboardLink.style.display = 'none';
-                            break;
-                    }
-                }
-            }
-        } else {
-            if (dashboardLink && logoutLink) {
-                dashboardLink.style.display = 'none';
-                logoutLink.style.display = 'none';
-            }
-        }
-
-        if (logoutButton) {
-            logoutButton.addEventListener('click', () => {
-                localStorage.removeItem('jwt_token');
-                localStorage.removeItem('user_role');
-                window.location.href = 'index.html';
-            });
-        }
-    });
-</script>
+<script src="js/script.js"></script>
 </body>
 </html>

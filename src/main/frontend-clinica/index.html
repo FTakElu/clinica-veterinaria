@@ -3,61 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login / Cadastro - PetCare</title>
+    <title>Clínica Pet - Cuidando de quem você ama!</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 <header>
-    <div class="container">
-        <h1>Bem-vindo à PetCare</h1>
-    </div>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Clínica Pet</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="servicos.html">Serviços</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
 </header>
 
-<main class="container">
-    <section id="hero-login">
-        <h2>Gerenciamento Simplificado da sua Clínica Veterinária</h2>
-        <p>Acesse o sistema para gerenciar agendamentos, clientes, pets, consultas e muito mais.</p>
+<main>
+    <section id="hero" class="hero-section">
+        <div class="container">
+            <h1>Cuidando de quem você ama!</h1>
+            <p>Os melhores cuidados para o seu pet, com amor e profissionalismo.</p>
+            <a href="agendar-consulta.html" class="btn-primary">Agende uma Consulta</a>
+        </div>
     </section>
 
-    <section class="auth-form-container">
-        <h2 id="form-title">Login</h2>
-        <form id="authForm">
-            <div class="form-group">
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" required>
+    <section id="sobre-nos" class="about-section">
+        <div class="container">
+            <h2>Sobre Nós</h2>
+            <div class="about-content">
+                <p>Na Clínica Veterinária, nossa paixão é cuidar do seu melhor amigo. Com uma equipe dedicada e infraestrutura moderna, oferecemos os melhores cuidados com amor e profissionalismo. Nosso objetivo é garantir a saúde e o bem-estar do seu pet em todas as fases da vida, proporcionando um atendimento humanizado e de alta qualidade.</p>
+                <p>Contamos com profissionais experientes em diversas especialidades veterinárias para oferecer um serviço completo e integrado, desde consultas de rotina até procedimentos complexos e emergências. Acreditamos na prevenção e na educação dos tutores para promover uma vida longa e saudável para seus animais de estimação.</p>
             </div>
-            <div class="form-group">
-                <label for="password">Senha:</label>
-                <input type="password" id="password" name="password" required>
+        </div>
+    </section>
+
+    <section id="servicos-destaque" class="services-highlight-section">
+        <div class="container">
+            <h2>Principais serviços do HV Clínica Animal</h2>
+            <p>Garanta o melhor para o seu pet com nossos serviços veterinários disponíveis 24 horas por dia: cirurgias emergenciais, exames de imagem, internações e consultas em geral. Tudo o que o seu animal precisa em um só lugar!</p>
+            <div class="service-cards">
+                <div class="card">
+                    <img src="assets/images/cirurgias.jpg" alt="Cirurgias Veterinárias">
+                    <h3>Cirurgias</h3>
+                    <p>O bloco cirúrgico do hospital conta com um ambiente climatizado e equipamentos modernos, como microscópio cirúrgico, aparelhos de anestesia e monitoramento completo.</p>
+                </div>
+                <div class="card">
+                    <img src="assets/images/exames.jpg" alt="Exames de Imagem">
+                    <h3>Exames de imagem</h3>
+                    <p>O Hospital Clínica Animal possui em suas instalações salas específicas para a realização de exames de imagem. Contamos com aparelhos de última geração e equipe especializada.</p>
+                </div>
+                <div class="card">
+                    <img src="assets/images/internacao.jpg" alt="Internação Veterinária">
+                    <h3>Internação</h3>
+                    <p>A internação dispõe de ambiente climatizado, equipamentos modernos como bombas de infusão, doppler, monitores, oxigênio e uma equipe sempre presente para o bem-estar do seu pet.</p>
+                </div>
             </div>
-            <div class="form-group" id="confirm-password-group" style="display: none;">
-                <label for="confirm-password">Confirmar Senha:</label>
-                <input type="password" id="confirm-password" name="confirm-password">
+        </div>
+    </section>
+
+    <section id="especialidades" class="specialties-section">
+        <div class="container">
+            <h2>Especialidades Veterinárias</h2>
+            <div class="specialty-grid">
+                <div class="specialty-item">
+                    <i class="fas fa-cat icon"></i>
+                    <h3>Medicina Felina</h3>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-cut icon"></i>
+                    <h3>Cirurgia Veterinária</h3>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-tooth icon"></i>
+                    <h3>Odontologia Veterinária</h3>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-paw icon"></i>
+                    <h3>Dermatologia Veterinária</h3>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-eye icon"></i>
+                    <h3>Oftalmologia Veterinária</h3>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-bone icon"></i>
+                    <h3>Ortopedia Veterinária</h3>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-syringe icon"></i>
+                    <h3>Acupuntura Veterinária</h3>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-dog icon"></i>
+                    <h3>Fisioterapia Veterinária</h3>
+                </div>
             </div>
-            <div class="form-group" id="role-select-group" style="display: none;">
-                <label for="role">Tipo de Usuário:</label>
-                <select id="role" name="role">
-                    <option value="CLIENTE">Cliente</option>
-                    <option value="SECRETARIO">Secretário(a)</option>
-                    <option value="VETERINARIO">Veterinário(a)</option>
-                </select>
+        </div>
+    </section>
+
+    <section id="noticias-dicas" class="news-tips-section">
+        <div class="container">
+            <h2>Nossos blogs</h2>
+            <div class="blog-cards">
+                <div class="card">
+                    <img src="assets/images/bravecto.jpg" alt="Bravecto 365">
+                    <h3>Bravecto 365: proteção prolongada contra pulgas e carrapatos</h3>
+                    <p>Pulgas e carrapatos não...</p>
+                    <a href="#" class="read-more">Leia Mais</a>
+                </div>
+                <div class="card">
+                    <img src="assets/images/adestramento.jpg" alt="Adestramento de Cães">
+                    <h3>Adestramento de Cães: Tudo O Que Você Precisa Saber</h3>
+                    <p>Veja todas as informações necessárias para você entender sobre adestramento de cães, quando você deve começar e como escolher o profissional ideal para isso.</p>
+                    <a href="#" class="read-more">Leia Mais</a>
+                </div>
+                <div class="card">
+                    <img src="assets/images/vacinas.jpg" alt="Vacinas Para Cachorro E Gato">
+                    <h3>Vacinas Para Cachorro E Gato: Tudo O Que Você Precisa Saber</h3>
+                    <p>Confira as informações sobre as vacinas para cachorro e gato e mantenha o protocolo de vacinação do seu pet em dia!</p>
+                    <a href="#" class="read-more">Leia Mais</a>
+                </div>
             </div>
-            <button type="submit" id="authButton">Entrar</button>
-        </form>
-        <p class="toggle-form">
-            <span id="toggle-text">Não tem uma conta?</span>
-            <a href="#" id="toggle-link">Cadastre-se</a>
-        </p>
+        </div>
     </section>
 </main>
 
-<footer>
+<footer class="footer">
     <div class="container">
-        <p>&copy; 2025 Clínica Veterinária PetCare. Todos os direitos reservados.</p>
-        <p>Entre em contato: contato@petcare.com.br</p>
+        <div class="footer-content">
+            <div class="footer-section contact-info">
+                <h3>Contato</h3>
+                <p>Telefone: 11 5519-3387-6403</p>
+                <p>Email: contato@clinicasalvatelmania.com</p>
+            </div>
+            <div class="footer-section address-info">
+                <h3>Endereço</h3>
+                <p>Avenida dos Três Poderes, 375</p>
+                <p>Salto, SP</p>
+                <p>CEP 13320-000</p>
+            </div>
+            <div class="footer-section opening-hours">
+                <h3>Horário de Atendimento</h3>
+                <p>Segunda a Sexta: 08:00 - 18:00</p>
+                <p>Sábados: Apenas com horário agendado</p>
+            </div>
+            <div class="footer-section social-media">
+                <h3>Siga-nos</h3>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            </div>
+        </div>
+        <div class="map-container">
+            <h3>Localização</h3>
+            <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.3316667551065!2d-47.28892302484088!3d-22.93677327921319!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8b29c9a0b9e83%3A0x8f7d9e4a3b8c7c9e!2sAv.%20dos%20Tr%C3%AAs%20Poderes%2C%20375%20-%20Jardim%20Santa%20Cruz%2C%20Salto%20-%20SP%2C%2013320-000!5e0!3m2!1spt-BR!2sbr!4v1719223518770!5m2!1spt-BR!2sbr"
+                    width="600"
+                    height="450"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Clínica Pet. Todos os direitos reservados.</p>
+        </div>
     </div>
 </footer>
 
-<script src="js/auth.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>

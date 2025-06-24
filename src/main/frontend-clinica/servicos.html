@@ -3,115 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serviços - PetCare</title>
+    <title>Serviços - Clínica Pet</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 <header>
-    <div class="container">
-        <h1>Nossos Serviços</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="agendar-consulta.html">Agendamentos</a></li>
-                <li><a href="servicos.html" class="active">Serviços</a></li>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Clínica Pet</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="servicos.html">Serviços</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
                 <li><a href="contato.html">Contato</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
             </ul>
-        </nav>
-    </div>
+        </div>
+    </nav>
 </header>
 
-<main class="container">
-    <section id="detailed-services">
-        <h2>Conheça Nossas Soluções para a Saúde e Bem-Estar do seu Pet</h2>
-        <p style="text-align: center; margin-bottom: 40px; color: var(--medium-grey);">Na PetCare, oferecemos uma gama completa de serviços veterinários, com equipamentos modernos e uma equipe altamente qualificada para cuidar do seu melhor amigo.</p>
+<main class="services-page">
+    <div class="container">
+        <h2>Nossos Serviços Completos</h2>
+        <p>Conheça a variedade de serviços que oferecemos para a saúde e bem-estar do seu pet.</p>
 
-        <div class="card-grid">
-            <div class="card">
-                <img src="assets/placeholder-service1.jpg" alt="Veterinário examinando cão">
-                <h3>Consultas Clínicas</h3>
-                <p>Realizamos consultas de rotina e emergenciais, com diagnóstico preciso e plano de tratamento individualizado para cada caso.</p>
-                <a href="agendar-consulta.html" class="button button-small">Agende Agora</a>
-            </div>
-            <div class="card">
-                <img src="assets/placeholder-service2.jpg" alt="Cachorro sendo vacinado">
-                <h3>Vacinação e Prevenção</h3>
-                <p>Mantenha a saúde do seu pet em dia com nosso programa de vacinação completo e orientações sobre prevenção de parasitas e doenças.</p>
-                <a href="agendar-consulta.html" class="button button-small">Agende Agora</a>
-            </div>
-            <div class="card">
-                <img src="assets/placeholder-service3.jpg" alt="Cirurgia em sala de operações">
-                <h3>Cirurgias Veterinárias</h3>
-                <p>Nossa equipe é especializada em diversos procedimentos cirúrgicos, garantindo segurança e o melhor pós-operatório para seu animal.</p>
-                <a href="agendar-consulta.html" class="button button-small">Agende Agora</a>
-            </div>
-            <div class="card">
-                <img src="assets/placeholder-service4.jpg" alt="Gato internado">
-                <h3>Internação e Hospitalização</h3>
-                <p>Dispomos de infraestrutura completa para internação, com monitoramento 24h e equipamentos de suporte para casos que exigem atenção contínua.</p>
-                <a href="contato.html" class="button button-small">Entre em Contato</a>
-            </div>
-            <div class="card">
-                <img src="https://via.placeholder.com/400x200?text=Exames+de+Imagem" alt="Exames de imagem">
-                <h3>Exames de Imagem</h3>
-                <p>Realizamos exames de raio-X, ultrassonografia e outros para um diagnóstico preciso e rápido da condição do seu pet.</p>
-                <a href="contato.html" class="button button-small">Entre em Contato</a>
-            </div>
-            <div class="card">
-                <img src="https://via.placeholder.com/400x200?text=Laboratorio" alt="Laboratório veterinário">
-                <h3>Laboratório Clínico</h3>
-                <p>Com nosso laboratório próprio, agilizamos os resultados de exames de sangue, urina e outros, essenciais para o diagnóstico e tratamento.</p>
-                <a href="contato.html" class="button button-small">Entre em Contato</a>
+        <div class="service-categories">
+            <h3>Serviços de Saúde e Bem-Estar</h3>
+            <div class="service-cards-full">
+                <div class="card">
+                    <img src="assets/images/cirurgias.jpg" alt="Cirurgias Veterinárias">
+                    <h3>Cirurgias</h3>
+                    <p>Realizamos cirurgias com segurança e equipamentos modernos para garantir a melhor recuperação do seu animal.</p>
+                </div>
+                <div class="card">
+                    <img src="assets/images/exames.jpg" alt="Exames de Imagem">
+                    <h3>Exames de Imagem</h3>
+                    <p>Dispomos de raio-x, ultrassonografia e outros exames para diagnósticos precisos e rápidos.</p>
+                </div>
+                <div class="card">
+                    <img src="assets/images/internacao.jpg" alt="Internação Veterinária">
+                    <h3>Internação</h3>
+                    <p>Ambiente seguro e climatizado com monitoramento 24h para pets que precisam de cuidados intensivos.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-syringe icon-large"></i>
+                    <h3>Vacinação</h3>
+                    <p>Protocolos de vacinação personalizados para proteger seu pet contra diversas doenças.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-stethoscope icon-large"></i>
+                    <h3>Consultas</h3>
+                    <p>Consultas de rotina, especializadas e de emergência para manter a saúde do seu pet em dia.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-dog icon-large"></i>
+                    <h3>Adestramento</h3>
+                    <p>Serviços de adestramento para melhorar o comportamento e a obediência do seu pet.</p>
+                </div>
             </div>
         </div>
-    </section>
 
-    <section id="specialties-detailed">
-        <h2>Nossas Especialidades</h2>
-        <p style="text-align: center; margin-bottom: 40px; color: var(--medium-grey);">Contamos com veterinários especializados em diversas áreas para um atendimento ainda mais completo.</p>
-        <div class="card-grid">
-            <div class="specialty-card">
-                <i class="fas fa-cat icon"></i>
-                <h4>Medicina Felina</h4>
-            </div>
-            <div class="specialty-card">
-                <i class="fas fa-cut icon"></i>
-                <h4>Cirurgia Veterinária</h4>
-            </div>
-            <div class="specialty-card">
-                <i class="fas fa-tooth icon"></i>
-                <h4>Odontologia Veterinária</h4>
-            </div>
-            <div class="specialty-card">
-                <i class="fas fa-paw icon"></i>
-                <h4>Dermatologia Veterinária</h4>
-            </div>
-            <div class="specialty-card">
-                <i class="fas fa-eye icon"></i>
-                <h4>Oftalmologia Veterinária</h4>
-            </div>
-            <div class="specialty-card">
-                <i class="fas fa-bone icon"></i>
-                <h4>Ortopedia Veterinária</h4>
-            </div>
-            <div class="specialty-card">
-                <i class="fas fa-syringe icon"></i>
-                <h4>Acupuntura Veterinária</h4>
-            </div>
-            <div class="specialty-card">
-                <i class="fas fa-running icon"></i>
-                <h4>Fisioterapia Veterinária</h4>
+        <div class="service-categories">
+            <h3>Especialidades Veterinárias</h3>
+            <div class="specialty-grid">
+                <div class="specialty-item">
+                    <i class="fas fa-cat icon"></i>
+                    <h3>Medicina Felina</h3>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-cut icon"></i>
+                    <h3>Cirurgia Veterinária</h3>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-tooth icon"></i>
+                    <h3>Odontologia Veterinária</h3>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-paw icon"></i>
+                    <h3>Dermatologia Veterinária</h3>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-eye icon"></i>
+                    <h3>Oftalmologia Veterinária</h3>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-bone icon"></i>
+                    <h3>Ortopedia Veterinária</h3>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-syringe icon"></i>
+                    <h3>Acupuntura Veterinária</h3>
+                </div>
+                <div class="specialty-item">
+                    <i class="fas fa-dog icon"></i>
+                    <h3>Fisioterapia Veterinária</h3>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 </main>
 
-<footer>
-    <div class="container">
-        <p>&copy; 2025 Clínica Veterinária PetCare. Todos os direitos reservados.</p>
-        <p>Entre em contato: contato@petcare.com.br</p>
-    </div>
+<footer class="footer">
 </footer>
 
 <script src="js/script.js"></script>

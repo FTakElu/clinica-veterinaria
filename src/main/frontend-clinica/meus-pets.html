@@ -3,95 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Pets - PetCare</title>
+    <title>Meus Pets - Clínica Pet</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-<header>
-    <div class="container">
-        <h1>Meus Pets</h1>
-        <nav>
+<div class="dashboard-layout">
+    <aside class="sidebar">
+        <div class="logo">Cliente Dashboard</div>
+        <nav class="sidebar-nav">
             <ul>
-                <li><a href="cliente-dashboard.html">Dashboard</a></li>
-                <li><a href="meus-pets.html" class="active">Meus Pets</a></li>
-                <li><a href="agendar-consulta.html">Agendar Consulta</a></li>
-                <li><a href="#" id="logout-button">Sair</a></li>
+                <li><a href="cliente-dashboard.html"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="agendar-consulta.html"><i class="fas fa-calendar-alt"></i> Agendar Consulta</a></li>
+                <li><a href="meus-pets.html"><i class="fas fa-paw"></i> Meus Pets</a></li>
+                <li><a href="#" id="logoutButton"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
             </ul>
         </nav>
-    </div>
-</header>
+    </aside>
 
-<main class="container">
-    <section id="new-pet-form">
-        <h2>Cadastrar Novo Pet</h2>
-        <form id="petForm">
-            <div class="form-group">
-                <label for="nomePet">Nome do Pet:</label>
-                <input type="text" id="nomePet" name="nomePet" required>
-            </div>
-            <div class="form-group">
-                <label for="especie">Espécie:</label>
-                <input type="text" id="especie" name="especie" placeholder="Cachorro, Gato, Pássaro..." required>
-            </div>
-            <div class="form-group">
-                <label for="raca">Raça:</label>
-                <input type="text" id="raca" name="raca" placeholder="Labrador, Siamês, Calopsita...">
-            </div>
-            <div class="form-group">
-                <label for="dataNascimento">Data de Nascimento:</label>
-                <input type="date" id="dataNascimento" name="dataNascimento">
-            </div>
-            <div class="form-group">
-                <label for="sexo">Sexo:</label>
-                <select id="sexo" name="sexo">
-                    <option value="">Selecione</option>
-                    <option value="MACHO">Macho</option>
-                    <option value="FEMEA">Fêmea</option>
-                </select>
-            </div>
-            <button type="submit">Cadastrar Pet</button>
-        </form>
-    </section>
+    <main class="dashboard-content">
+        <header class="dashboard-header">
+            <h1>Meus Pets</h1>
+            <button class="btn-secondary" id="addPetButton"><i class="fas fa-plus"></i> Adicionar Novo Pet</button>
+        </header>
 
-    <section id="my-pets-list">
-        <h2>Seus Pets Cadastrados</h2>
-        <p>Clique para ver detalhes do histórico e consultas.</p>
-        <ul class="data-list" id="pets-registered-list">
-            <li>
-                <div>
-                    <p><strong>Nome:</strong> Rex</p>
-                    <p><strong>Espécie:</strong> Cachorro</p>
-                    <p><strong>Raça:</strong> Golden Retriever</p>
-                </div>
-                <div class="actions">
-                    <a href="detalhe-pet.html?id=1" class="button info button-small">Detalhes</a>
-                    <button class="button delete button-small">Remover</button>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <p><strong>Nome:</strong> Luna</p>
-                    <p><strong>Espécie:</strong> Gato</p>
-                    <p><strong>Raça:</strong> Persa</p>
-                </div>
-                <div class="actions">
-                    <a href="detalhe-pet.html?id=2" class="button info button-small">Detalhes</a>
-                    <button class="button delete button-small">Remover</button>
-                </div>
-            </li>
-        </ul>
-    </section>
-</main>
+        <section class="dashboard-section">
+            <div id="petsList" class="pets-cards-grid">
+                <p>Carregando seus pets...</p>
+            </div>
+        </section>
 
-<footer>
-    <div class="container">
-        <p>&copy; 2025 Clínica Veterinária PetCare. Todos os direitos reservados.</p>
-        <p>Entre em contato: contato@petcare.com.br</p>
-    </div>
-</footer>
+        <div id="petModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2><span id="modalTitle">Adicionar Novo Pet</span></h2>
+                <form id="petForm">
+                    <input type="hidden" id="petId">
+                    <div class="form-group">
+                        <label for="nomePet">Nome:</label>
+                        <input type="text" id="nomePet" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="especiePet">Espécie:</label>
+                        <input type="text" id="especiePet" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="racaPet">Raça:</label>
+                        <input type="text" id="racaPet">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataNascimentoPet">Data de Nascimento:</label>
+                        <input type="date" id="dataNascimentoPet">
+                    </div>
+                    <div class="form-group">
+                        <label for="sexoPet">Sexo:</label>
+                        <select id="sexoPet">
+                            <option value="MACHO">Macho</option>
+                            <option value="FEMEA">Fêmea</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">Salvar Pet</button>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
 
+<script src="js/api.js"></script>
 <script src="js/common.js"></script>
+<script src="js/auth.js"></script>
 <script src="js/cliente.js"></script>
 </body>
 </html>

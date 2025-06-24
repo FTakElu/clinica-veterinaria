@@ -1,66 +1,63 @@
 // js/api.js
+const BASE_URL = 'http://localhost:8080/api'; // Adapte para a URL real do seu backend
 
-const API_BASE_URL = 'http://localhost:8080'; // **ATENÇÃO: Mude esta URL se sua API estiver em outro local**
+function getAuthToken() {
+    // Recupera o token JWT do localStorage ou de outro lugar
+    return localStorage.getItem('jwtToken');
+}
 
-/**
- * Função genérica para fazer requisições à API.
- * Adiciona automaticamente o token JWT se disponível no localStorage.
- * @param {string} endpoint - O caminho do endpoint (ex: '/auth/login', '/clientes/meus-pets').
- * @param {string} method - O método HTTP (GET, POST, PUT, DELETE).
- * @param {object} [body=null] - O corpo da requisição para métodos POST/PUT.
- * @param {boolean} [requiresAuth=true] - Define se a requisição requer autenticação.
- * @returns {Promise<object>} - Uma promessa que resolve para os dados JSON da resposta.
- * @throws {Error} - Lança um erro se a requisição falhar ou a resposta não for OK.
- */
-async function fetchData(endpoint, method = 'GET', body = null, requiresAuth = true) {
-    const url = `${API_BASE_URL}${endpoint}`;
+function getHeaders(contentType = 'application/json') {
     const headers = {
-        'Content-Type': 'application/json',
+        'Content-Type': contentType,
     };
-
-    if (requiresAuth) {
-        const token = localStorage.getItem('jwt_token');
-        if (!token) {
-            console.error('Nenhum token JWT encontrado. Redirecionando para login.');
-            window.location.href = 'login.html'; // Redireciona para login se o token não existir
-            throw new Error('Não autenticado.');
-        }
+    const token = getAuthToken();
+    if (token) {
         headers['Authorization'] = `Bearer ${token}`;
     }
+    return headers;
+}
 
-    const options = {
-        method: method,
-        headers: headers,
-        body: body ? JSON.stringify(body) : null
-    };
-
+export async function apiFetch(url, options = {}) {
     try {
-        const response = await fetch(url, options);
+        const fullUrl = `${BASE_URL}${url}`;
+        const defaultOptions = {
+            headers: getHeaders(),
+        };
 
-        if (response.status === 401 && requiresAuth) { // Token expirado ou inválido
-            console.warn('Token de autenticação expirado ou inválido. Redirecionando para login.');
-            localStorage.removeItem('jwt_token');
-            localStorage.removeItem('user_role');
-            alert('Sua sessão expirou. Por favor, faça login novamente.');
+        const mergedOptions = { ...defaultOptions, ...options };
+        mergedOptions.headers = { ...defaultOptions.headers, ...options.headers };
+
+        const response = await fetch(fullUrl, mergedOptions);
+
+        if (response.status === 401 || response.status === 403) {
+            // Se não autorizado, redireciona para o login
+            console.warn('Unauthorized or Forbidden access. Redirecting to login.');
+            localStorage.removeItem('jwtToken'); // Limpa token inválido
+            localStorage.removeItem('userRole');
             window.location.href = 'login.html';
-            throw new Error('Sessão expirada.');
         }
 
         if (!response.ok) {
-            const errorData = await response.json().catch(() => ({ message: 'Erro desconhecido no servidor.' }));
-            console.error(`Erro ${response.status} na requisição para ${url}:`, errorData);
-            throw new Error(errorData.message || `Erro do servidor: ${response.status}`);
+            const errorData = await response.json();
+            throw new Error(errorData.message || `Erro na requisição: ${response.statusText}`);
         }
 
-        // Se a resposta for 204 No Content, retorne um objeto vazio para evitar erro de parsing JSON
+        // Se a resposta for 204 No Content, não tenta parsear JSON
         if (response.status === 204) {
-            return {};
+            return null;
         }
 
-        return await response.json();
-
+        return response.json();
     } catch (error) {
-        console.error('Erro de rede ou na requisição:', error);
-        throw error; // Propagar o erro para quem chamou
+        console.error("Erro na API Fetch:", error);
+        throw error;
     }
 }
+
+// Funções específicas para cada tipo de requisição
+export const api = {
+    get: (url) => apiFetch(url, { method: 'GET' }),
+    post: (url, body) => apiFetch(url, { method: 'POST', body: JSON.stringify(body) }),
+    put: (url, body) => apiFetch(url, { method: 'PUT', body: JSON.stringify(body) }),
+    delete: (url) => apiFetch(url, { method: 'DELETE' }),
+};

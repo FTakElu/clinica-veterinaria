@@ -3,88 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Vacina - PetCare</title>
+    <title>Registrar Vacina - Clínica Pet</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-<header>
-    <div class="container">
-        <h1>Registrar Vacina</h1>
-        <nav>
+<div class="dashboard-layout">
+    <aside class="sidebar">
+        <div class="logo">Veterinário Dashboard</div>
+        <nav class="sidebar-nav">
             <ul>
-                <li><a href="secretario-dashboard.html">Dashboard</a></li>
-                <li><a href="agendar-consulta.html">Agendar Consulta</a></li>
-                <li><a href="registrar-vacina.html" class="active">Registrar Vacina</a></li>
-                <li><a href="gerenciar-tipos-vacina.html">Tipos de Vacina</a></li>
-                <li><a href="#" id="logout-button">Sair</a></li>
+                <li><a href="veterinario-dashboard.html"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="#"><i class="fas fa-calendar-check"></i> Minhas Consultas</a></li>
+                <li><a href="#"><i class="fas fa-paw"></i> Gerenciar Pets</a></li>
+                <li><a href="registrar-vacina.html"><i class="fas fa-syringe"></i> Registrar Vacina</a></li>
+                <li><a href="#" id="logoutButton"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
             </ul>
         </nav>
-    </div>
-</header>
+    </aside>
 
-<main class="container">
-    <section id="vaccine-registration-form">
-        <h2>Registro de Aplicação de Vacina</h2>
-        <form id="registroVacinaForm">
-            <div class="form-group">
-                <label for="cliente">Cliente:</label>
-                <select id="cliente" name="cliente" required>
-                    <option value="">Selecione o Cliente</option>
-                    <option value="1">João Silva</option>
-                    <option value="2">Maria Oliveira</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="animal">Animal:</label>
-                <select id="animal" name="animal" required>
-                    <option value="">Selecione o Animal</option>
-                    <option value="1">Rex (Cachorro)</option>
-                    <option value="2">Mimi (Gato)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="tipoVacina">Tipo de Vacina:</label>
-                <select id="tipoVacina" name="tipoVacina" required>
-                    <option value="">Selecione a Vacina</option>
-                    <option value="1">V8</option>
-                    <option value="2">Antirrábica</option>
-                    <option value="3">V10</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="dataAplicacao">Data da Aplicação:</label>
-                <input type="date" id="dataAplicacao" name="dataAplicacao" required>
-            </div>
-            <div class="form-group">
-                <label for="proximaDose">Data da Próxima Dose (Opcional):</label>
-                <input type="date" id="proximaDose" name="proximaDose">
-            </div>
-            <div class="form-group">
-                <label for="lote">Número do Lote:</label>
-                <input type="text" id="lote" name="lote" required>
-            </div>
-            <div class="form-group">
-                <label for="veterinario">Veterinário Aplicador:</label>
-                <select id="veterinario" name="veterinario" required>
-                    <option value="">Selecione o Veterinário</option>
-                    <option value="1">Dr. Pedro Almeida</option>
-                    <option value="2">Dra. Ana Costa</option>
-                </select>
-            </div>
-            <button type="submit">Registrar Vacina</button>
-        </form>
-    </section>
-</main>
+    <main class="dashboard-content">
+        <header class="dashboard-header">
+            <h1>Registrar Aplicação de Vacina</h1>
+        </header>
 
-<footer>
-    <div class="container">
-        <p>&copy; 2025 Clínica Veterinária PetCare. Todos os direitos reservados.</p>
-        <p>Entre em contato: contato@petcare.com.br</p>
-    </div>
-</footer>
+        <section class="dashboard-section">
+            <form id="registrarVacinaForm" class="form-vacina">
+                <div class="form-group">
+                    <label for="petIdVacina">Selecione o Pet:</label>
+                    <select id="petIdVacina" required>
+                        <option value="">Carregando pets...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tipoVacinaId">Tipo da Vacina:</label>
+                    <select id="tipoVacinaId" required>
+                        <option value="">Carregando tipos de vacina...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dataAplicacao">Data de Aplicação:</label>
+                    <input type="date" id="dataAplicacao" name="dataAplicacao" required>
+                </div>
+                <div class="form-group">
+                    <label for="fabricante">Fabricante:</label>
+                    <input type="text" id="fabricante" name="fabricante" required>
+                </div>
+                <button type="submit" class="btn-primary">Registrar Vacina</button>
+            </form>
+        </section>
+    </main>
+</div>
 
+<script src="js/api.js"></script>
 <script src="js/common.js"></script>
-<script src="js/secretario.js"></script>
-</body>
+<script src="js/auth.js"></script>
+<script src="js/veterinario.js"></script> </body>
 </html>

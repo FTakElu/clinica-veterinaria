@@ -3,137 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clínica Veterinária - Login</title>
+    <title>Login - Clínica Pet</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <header>
-    <div class="container">
-        <h1>Clínica Veterinária Pet Feliz</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Início</a></li>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Clínica Pet</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
                 <li><a href="servicos.html">Serviços</a></li>
                 <li><a href="noticias.html">Notícias</a></li>
                 <li><a href="contato.html">Contato</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li id="navDashboardLink" style="display:none;"><a href="#" id="dashboardLink">Dashboard</a></li>
-                <li id="navLogoutLink" style="display:none;"><a href="#" id="logoutButton">Sair</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
             </ul>
-        </nav>
-    </div>
+        </div>
+    </nav>
 </header>
 
-<main class="container">
-    <section id="auth-section">
+<main class="login-page">
+    <div class="container">
         <h2>Login</h2>
-        <form id="loginForm">
-            <label for="loginEmail">Email:</label>
-            <input type="email" id="loginEmail" name="email" required>
-
-            <label for="loginPassword">Senha:</label>
-            <input type="password" id="loginPassword" name="password" required>
-
-            <button type="submit">Entrar</button>
+        <form id="loginForm" class="login-form">
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn-primary">Entrar</button>
+            <p class="register-link">Não tem uma conta? <a href="#">Cadastre-se</a></p>
         </form>
-
-        <p>Não tem uma conta? <a href="#" id="showRegisterFormLink">Cadastre-se aqui</a></p>
-
-        <h2 id="registerTitle" style="display: none;">Cadastro de Cliente</h2>
-        <form id="registerForm" style="display: none;">
-            <label for="registerNomeCompleto">Nome Completo:</label>
-            <input type="text" id="registerNomeCompleto" name="nomeCompleto" required>
-
-            <label for="registerTelefone">Telefone:</label>
-            <input type="text" id="registerTelefone" name="telefone" required>
-
-            <label for="registerCpf">CPF:</label>
-            <input type="text" id="registerCpf" name="cpf" required>
-
-            <label for="registerEmail">Email:</label>
-            <input type="email" id="registerEmail" name="email" required>
-
-            <label for="registerPassword">Senha:</label>
-            <input type="password" id="registerPassword" name="password" required>
-
-            <button type="submit">Cadastrar</button>
-        </form>
-    </section>
+    </div>
 </main>
 
-<footer>
-    <div class="container">
-        <p>&copy; 2025 Clínica Veterinária Pet Feliz. Todos os direitos reservados.</p>
-        <p>Avenida dos Três Poderes, 75, Salto, SP - Instituto Federal de São Paulo Campus Salto</p>
-    </div>
+<footer class="footer">
 </footer>
 
 <script src="js/api.js"></script>
 <script src="js/auth.js"></script>
-<script src="js/common.js"></script>
-<script>
-    // Lógica para alternar entre formulários de login e registro
-    document.addEventListener('DOMContentLoaded', () => {
-        const showRegisterFormLink = document.getElementById('showRegisterFormLink');
-        const loginForm = document.getElementById('loginForm');
-        const registerForm = document.getElementById('registerForm');
-        const registerTitle = document.getElementById('registerTitle');
-
-        if (showRegisterFormLink && loginForm && registerForm && registerTitle) {
-            showRegisterFormLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                loginForm.style.display = 'none';
-                registerForm.style.display = 'flex'; // Usar flex para colunas
-                registerTitle.style.display = 'block';
-                document.querySelector('#auth-section h2').textContent = 'Cadastro de Cliente';
-                showRegisterFormLink.style.display = 'none'; // Esconde o link
-            });
-        }
-
-        // Lógica do template para links de dashboard/logout
-        const token = localStorage.getItem('jwt_token');
-        const role = localStorage.getItem('user_role');
-        const dashboardLink = document.getElementById('navDashboardLink');
-        const logoutLink = document.getElementById('navLogoutLink');
-        const dashboardAnchor = document.getElementById('dashboardLink');
-        const logoutButton = document.getElementById('logoutButton');
-
-        if (token && role) {
-            if (dashboardLink && logoutLink) {
-                dashboardLink.style.display = 'inline';
-                logoutLink.style.display = 'inline';
-                if (dashboardAnchor) {
-                    switch (role) {
-                        case 'CLIENTE':
-                            dashboardAnchor.href = 'cliente-dashboard.html';
-                            break;
-                        case 'SECRETARIO':
-                            dashboardAnchor.href = 'secretario-dashboard.html';
-                            break;
-                        case 'VETERINARIO':
-                            dashboardAnchor.href = 'veterinario-dashboard.html';
-                            break;
-                        default:
-                            dashboardLink.style.display = 'none';
-                            break;
-                    }
-                }
-            }
-        } else {
-            if (dashboardLink && logoutLink) {
-                dashboardLink.style.display = 'none';
-                logoutLink.style.display = 'none';
-            }
-        }
-
-        if (logoutButton) {
-            logoutButton.addEventListener('click', () => {
-                localStorage.removeItem('jwt_token');
-                localStorage.removeItem('user_role');
-                window.location.href = 'index.html';
-            });
-        }
-    });
-</script>
 </body>
 </html>

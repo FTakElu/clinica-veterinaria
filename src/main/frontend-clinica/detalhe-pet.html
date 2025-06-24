@@ -3,114 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes do Pet - PetCare</title>
+    <title>Detalhes do Pet - Clínica Pet</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-<header>
-    <div class="container">
-        <h1>Detalhes do Pet</h1>
-        <nav>
+<div class="dashboard-layout">
+    <aside class="sidebar">
+        <div class="logo">Cliente Dashboard</div>
+        <nav class="sidebar-nav">
             <ul>
-                <li><a href="cliente-dashboard.html">Dashboard</a></li>
-                <li><a href="meus-pets.html" class="active">Meus Pets</a></li>
-                <li><a href="agendar-consulta.html">Agendar Consulta</a></li>
-                <li><a href="#" id="logout-button">Sair</a></li>
+                <li><a href="cliente-dashboard.html"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="agendar-consulta.html"><i class="fas fa-calendar-alt"></i> Agendar Consulta</a></li>
+                <li><a href="meus-pets.html"><i class="fas fa-paw"></i> Meus Pets</a></li>
+                <li><a href="#" id="logoutButton"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
             </ul>
         </nav>
-    </div>
-</header>
+    </aside>
 
-<main class="container">
-    <section id="pet-details-overview">
-        <h2 id="pet-name-display">Nome do Pet</h2>
-        <div class="card">
-            <h3>Informações Básicas</h3>
-            <p><strong>Espécie:</strong> <span id="pet-especie"></span></p>
-            <p><strong>Raça:</strong> <span id="pet-raca"></span></p>
-            <p><strong>Data de Nascimento:</strong> <span id="pet-data-nascimento"></span></p>
-            <p><strong>Sexo:</strong> <span id="pet-sexo"></span></p>
-            <p><strong>Peso:</strong> <span id="pet-peso">N/A</span></p>
-            <p><strong>Cor:</strong> <span id="pet-cor">N/A</span></p>
-            <div class="button-group" style="margin-top: 20px;">
-                <button class="button info button-small">Editar Dados</button>
-                <button class="button delete button-small">Remover Pet</button>
+    <main class="dashboard-content">
+        <header class="dashboard-header">
+            <h1>Detalhes do Pet: <span id="petNameDetail"></span></h1>
+            <p>Dono: <span id="ownerNameDetail"></span></p>
+            <button class="btn-secondary" id="editPetButton"><i class="fas fa-edit"></i> Editar Pet</button>
+            <button class="btn-danger" id="deletePetButton"><i class="fas fa-trash-alt"></i> Excluir Pet</button>
+        </header>
+
+        <section class="dashboard-section">
+            <h2>Informações do Pet</h2>
+            <div class="pet-info-grid">
+                <div><strong>Nome:</strong> <span id="infoNome"></span></div>
+                <div><strong>Espécie:</strong> <span id="infoEspecie"></span></div>
+                <div><strong>Raça:</strong> <span id="infoRaca"></span></div>
+                <div><strong>Data de Nascimento:</strong> <span id="infoDataNascimento"></span></div>
+                <div><strong>Sexo:</strong> <span id="infoSexo"></span></div>
+            </div>
+        </section>
+
+        <section class="dashboard-section">
+            <h2>Histórico de Consultas</h2>
+            <div id="consultasHistorico" class="consultas-list">
+                <p>Carregando histórico de consultas...</p>
+            </div>
+        </section>
+
+        <section class="dashboard-section">
+            <h2>Cartão de Vacinação</h2>
+            <div id="vacinasHistorico" class="vacinas-list">
+                <p>Carregando cartão de vacinação...</p>
+            </div>
+        </section>
+
+        <div id="petModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2><span id="modalTitle">Editar Pet</span></h2>
+                <form id="petForm">
+                    <input type="hidden" id="petId">
+                    <div class="form-group">
+                        <label for="nomePet">Nome:</label>
+                        <input type="text" id="nomePet" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="especiePet">Espécie:</label>
+                        <input type="text" id="especiePet" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="racaPet">Raça:</label>
+                        <input type="text" id="racaPet">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataNascimentoPet">Data de Nascimento:</label>
+                        <input type="date" id="dataNascimentoPet">
+                    </div>
+                    <div class="form-group">
+                        <label for="sexoPet">Sexo:</label>
+                        <select id="sexoPet">
+                            <option value="MACHO">Macho</option>
+                            <option value="FEMEA">Fêmea</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">Salvar Alterações</button>
+                </form>
             </div>
         </div>
-    </section>
+    </main>
+</div>
 
-    <section id="pet-consultations-history">
-        <h2>Histórico de Consultas</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>Data</th>
-                <th>Serviço</th>
-                <th>Veterinário</th>
-                <th>Diagnóstico</th>
-                <th>Ações</th>
-            </tr>
-            </thead>
-            <tbody id="consultations-history-table">
-            <tr>
-                <td>10/05/2025</td>
-                <td>Consulta Geral</td>
-                <td>Dr. Pedro Almeida</td>
-                <td>Otite leve</td>
-                <td><button class="button info button-small">Ver Relatório</button></td>
-            </tr>
-            <tr>
-                <td>01/03/2025</td>
-                <td>Vacina V8</td>
-                <td>Dra. Ana Costa</td>
-                <td>Vacinação de rotina</td>
-                <td><button class="button info button-small">Ver Relatório</button></td>
-            </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section id="pet-vaccine-history">
-        <h2>Histórico de Vacinas</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>Vacina</th>
-                <th>Data Aplicação</th>
-                <th>Próxima Dose</th>
-                <th>Lote</th>
-                <th>Veterinário</th>
-            </tr>
-            </thead>
-            <tbody id="vaccine-history-table">
-            <tr>
-                <td>V8</td>
-                <td>01/03/2025</td>
-                <td>01/03/2026</td>
-                <td>XYZ123</td>
-                <td>Dra. Ana Costa</td>
-            </tr>
-            <tr>
-                <td>Antirrábica</td>
-                <td>01/03/2025</td>
-                <td>01/03/2026</td>
-                <td>ABC456</td>
-                <td>Dra. Ana Costa</td>
-            </tr>
-            </tbody>
-        </table>
-    </section>
-</main>
-
-<footer>
-    <div class="container">
-        <p>&copy; 2025 Clínica Veterinária PetCare. Todos os direitos reservados.</p>
-        <p>Entre em contato: contato@petcare.com.br</p>
-    </div>
-</footer>
-
+<script src="js/api.js"></script>
 <script src="js/common.js"></script>
-<script src="js/cliente.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/cliente.js"></script> <script>
+    // Lógica específica para carregar detalhes do pet, histórico de consultas e vacinas
+    // Pode ser uma função em cliente.js chamada de detalhe-pet.html
+    document.addEventListener('DOMContentLoaded', () => {
+        const petId = new URLSearchParams(window.location.search).get('id');
+        if (petId) {
+            // Chamar função de cliente.js para carregar detalhes do pet
+            // Ex: cliente.loadPetDetails(petId);
+        }
+    });
+</script>
 </body>
 </html>
