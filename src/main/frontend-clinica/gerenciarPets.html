@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciar Pets - Secretário - Clínica Pet</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<header>
+  <nav>
+    <h1>Clínica Pet</h1>
+    <ul>
+      <li><a href="#" id="welcomeMessage"></a></li>
+      <li><a href="secretario-dashboard.html">Dashboard</a></li>
+      <li><a href="#" id="logoutBtn">Sair</a></li>
+    </ul>
+  </nav>
+</header>
+<div class="container">
+  <h2>Gerenciar Pets</h2>
+
+  <section id="gerenciar-pets-section" class="dashboard-section">
+    <h3>Animais Cadastrados</h3>
+    <button class="btn btn-primary" id="addPetBtn">Cadastrar Novo Pet</button>
+
+    <h4>Lista de Pets</h4>
+    <input type="text" id="petSearch" placeholder="Buscar pet por nome/dono..." class="search-input">
+    <div id="petList" class="data-list">
+      <p>Nenhum pet cadastrado.</p>
+    </div>
+  </section>
+
+  <div id="petModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h3 id="petModalTitle"></h3>
+      <form id="petForm">
+        <input type="hidden" id="petIdHidden">
+        <div class="form-group">
+          <label for="petNome">Nome do Pet:</label>
+          <input type="text" id="petNome" name="nome" required>
+        </div>
+        <div class="form-group">
+          <label for="petEspecie">Espécie:</label>
+          <input type="text" id="petEspecie" name="especie" required>
+        </div>
+        <div class="form-group">
+          <label for="petRaca">Raça:</label>
+          <input type="text" id="petRaca" name="raca">
+        </div>
+        <div class="form-group">
+          <label for="petDataNascimento">Data de Nascimento:</label>
+          <input type="date" id="petDataNascimento" name="dataNascimento">
+        </div>
+        <div class="form-group">
+          <label for="petSexo">Sexo:</label>
+          <select id="petSexo" name="sexo" required>
+            <option value="Macho">Macho</option>
+            <option value="Fêmea">Fêmea</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="petDonoId">Dono (Cliente):</label>
+          <select id="petDonoId" name="donoId" required>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary"></button>
+        <div id="petMessage" class="message"></div>
+      </form>
+    </div>
+  </div>
+
+</div>
+<script type="module" src="./js/auth.js"></script>
+<script type="module" src="./js/script.js"></script>
+<script type="module" src="./js/gerenciarPets.js"></script>
+</body>
+</html>

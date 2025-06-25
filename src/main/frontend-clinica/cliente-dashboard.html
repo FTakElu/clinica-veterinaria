@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard do Cliente - Clínica Pet</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<header>
+    <nav>
+        <h1>Clínica Pet</h1>
+        <ul>
+            <li><a href="#" id="welcomeMessage"></a></li>
+            <li><a href="#" id="logoutBtn">Sair</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="container dashboard-container">
+    <h2>Dashboard do Cliente</h2>
+    <p>Bem-vindo(a), <span id="clientNameDisplay"></span>!</p>
+
+    <section class="dashboard-section">
+        <h3>Navegação Rápida</h3>
+        <div class="dashboard-links">
+            <a href="perfil-cliente.html" class="btn btn-primary">Meu Perfil</a>
+            <a href="meus-pets.html" class="btn btn-primary">Meus Pets</a>
+            <a href="minhas-consultas.html" class="btn btn-primary">Minhas Consultas</a>
+            <a href="agendar-consulta.html" class="btn btn-primary">Agendar Nova Consulta</a>
+        </div>
+    </section>
+
+    <section class="dashboard-section">
+        <h3>Últimas Atividades</h3>
+        <div id="latestActivities">
+            <p>Carregando suas últimas consultas e vacinas...</p>
+        </div>
+    </section>
+
+</div>
+<script type="module" src="./js/auth.js"></script>
+<script type="module" src="./js/script.js"></script>
+<script type="module" src="./js/clienteDashboard.js"></script>
+</body>
+</html>

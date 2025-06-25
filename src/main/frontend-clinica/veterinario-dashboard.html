@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard do Veterinário - Clínica Pet</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<header>
+    <nav>
+        <h1>Clínica Pet</h1>
+        <ul>
+            <li><a href="#" id="welcomeMessage"></a></li>
+            <li><a href="#" id="logoutBtn">Sair</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="container dashboard-container">
+    <h2>Dashboard do Veterinário</h2>
+    <p>Bem-vindo(a), <span id="veterinarioNameDisplay"></span>!</p>
+
+    <section id="minhas-consultas-section" class="dashboard-section">
+        <h3>Minhas Consultas Agendadas</h3>
+        <input type="text" id="consultaSearch" placeholder="Buscar consulta por pet/dono..." class="search-input">
+        <div id="consultaList" class="data-list">
+            <p>Nenhuma consulta agendada para você.</p>
+        </div>
+    </section>
+
+    <section id="registro-vacinas-section" class="dashboard-section">
+        <h3>Atalhos Rápidos</h3>
+        <div class="dashboard-links">
+            <a href="registrar-vacina.html" class="btn btn-primary">Registrar Vacina Aplicada</a>
+        </div>
+    </section>
+
+    <div id="relatorioConsultaModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="relatorioModalTitle"></h3>
+            <form id="relatorioConsultaForm">
+                <input type="hidden" id="relatorioConsultaIdHidden">
+                <p><strong>Consulta:</strong> <span id="relatorioConsultaInfo"></span></p>
+                <div class="form-group">
+                    <label for="relatorioDescricao">Descrição do Relatório:</label>
+                    <textarea id="relatorioDescricao" name="descricao" rows="10" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" id="relatorioSubmitBtn"></button>
+                <div id="relatorioMessage" class="message"></div>
+            </form>
+        </div>
+    </div>
+
+    <div id="viewPetVaccinesModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3>Vacinas Aplicadas no Pet: <span id="petNameForVaccines"></span></h3>
+            <ul id="vacinasAplicadasList">
+            </ul>
+        </div>
+    </div>
+
+</div>
+<script type="module" src="./js/auth.js"></script>
+<script type="module" src="./js/script.js"></script>
+<script type="module" src="./js/veterinarioDashboard.js"></script>
+</body>
+</html>

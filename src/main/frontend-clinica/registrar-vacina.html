@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Vacina Aplicada - Clínica Pet</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<header>
+    <nav>
+        <h1>Clínica Pet</h1>
+        <ul>
+            <li><a href="#" id="welcomeMessage"></a></li>
+            <li><a href="secretario-dashboard.html" id="dashboardLink">Dashboard</a></li>
+            <li><a href="#" id="logoutBtn">Sair</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="container">
+    <h2>Registrar Vacina Aplicada</h2>
+
+    <section class="dashboard-section">
+        <form id="registerVaccineForm" class="form-card">
+            <div class="form-group">
+                <label for="regVacinaPet">Pet:</label>
+                <select id="regVacinaPet" name="petId" required>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="regVacinaTipo">Tipo de Vacina:</label>
+                <select id="regVacinaTipo" name="tipoVacinaId" required>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="regVacinaData">Data da Aplicação:</label>
+                <input type="date" id="regVacinaData" name="dataAplicacao" required>
+            </div>
+            <div class="form-group" id="veterinarioSelectGroup">
+                <label for="regVacinaVeterinario">Veterinário (Opcional):</label>
+                <select id="regVacinaVeterinario" name="veterinarioId">
+                </select>
+                <small>Selecione o veterinário que aplicou a vacina. Se você for um veterinário, seu nome será preenchido automaticamente.</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar Vacina</button>
+            <div id="regVacinaMessage" class="message"></div>
+        </form>
+    </section>
+
+</div>
+<script type="module" src="./js/auth.js"></script>
+<script type="module" src="./js/script.js"></script>
+<script type="module" src="./js/registrarVacina.js"></script>
+</body>
+</html>

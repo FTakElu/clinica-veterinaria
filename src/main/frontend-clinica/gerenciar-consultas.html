@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciar Consultas - Secretário - Clínica Pet</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<header>
+  <nav>
+    <h1>Clínica Pet</h1>
+    <ul>
+      <li><a href="#" id="welcomeMessage"></a></li>
+      <li><a href="secretario-dashboard.html">Dashboard</a></li>
+      <li><a href="#" id="logoutBtn">Sair</a></li>
+    </ul>
+  </nav>
+</header>
+<div class="container">
+  <h2>Gerenciar Consultas</h2>
+
+  <section id="gerenciar-consultas-section" class="dashboard-section">
+    <h3>Consultas Agendadas e Realizadas</h3>
+    <button class="btn btn-primary" id="addConsultaBtn">Agendar Nova Consulta</button>
+
+    <h4>Lista de Consultas</h4>
+    <input type="text" id="consultaSearch" placeholder="Buscar consulta por pet/dono/veterinário..." class="search-input">
+    <div id="consultaList" class="data-list">
+      <p>Nenhuma consulta agendada.</p>
+    </div>
+  </section>
+
+  <div id="consultaModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h3 id="consultaModalTitle"></h3>
+      <form id="consultaForm">
+        <input type="hidden" id="consultaIdHidden">
+        <div class="form-group">
+          <label for="consultaPetId">Pet:</label>
+          <select id="consultaPetId" name="petId" required>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="consultaDonoInfo">Dono (Cliente):</label>
+          <input type="text" id="consultaDonoInfo" disabled>
+        </div>
+        <div class="form-group">
+          <label for="consultaVeterinarioId">Veterinário:</label>
+          <select id="consultaVeterinarioId" name="veterinarioId" required>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="consultaData">Data:</label>
+          <input type="date" id="consultaData" name="data" required>
+        </div>
+        <div class="form-group">
+          <label for="consultaHora">Hora:</label>
+          <input type="time" id="consultaHora" name="hora" required>
+        </div>
+        <div class="form-group">
+          <label for="consultaMotivo">Motivo:</label>
+          <textarea id="consultaMotivo" name="motivo" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="consultaStatus">Status:</label>
+          <select id="consultaStatus" name="status" required>
+            <option value="Agendada">Agendada</option>
+            <option value="Confirmada">Confirmada</option>
+            <option value="Cancelada">Cancelada</option>
+            <option value="Concluída">Concluída</option>
+            <option value="Em Andamento">Em Andamento</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary"></button>
+        <div id="consultaMessage" class="message"></div>
+      </form>
+    </div>
+  </div>
+
+</div>
+<script type="module" src="./js/auth.js"></script>
+<script type="module" src="./js/script.js"></script>
+<script type="module" src="./js/gerenciarConsultas.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard do Administrador - Clínica Pet</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<header>
+  <nav>
+    <h1>Clínica Pet</h1>
+    <ul>
+      <li><a href="#" id="welcomeMessage"></a></li>
+      <li><a href="#" id="logoutBtn">Sair</a></li>
+    </ul>
+  </nav>
+</header>
+<div class="container dashboard-container">
+  <h2>Dashboard do Administrador</h2>
+  <p>Bem-vindo(a), <span id="adminNameDisplay"></span>!</p>
+
+  <section id="gerenciar-usuarios-admin-section" class="dashboard-section">
+    <h3>Gerenciar Usuários (Incluir Secretários e Admins)</h3>
+    <button class="btn btn-primary" id="addSecretarioBtn">Cadastrar Novo Secretário</button>
+    <button class="btn btn-primary" id="addOtherUserBtn">Cadastrar Outro Tipo de Usuário</button>
+
+    <h4>Lista Completa de Usuários</h4>
+    <input type="text" id="userSearchAdmin" placeholder="Buscar usuário por nome/email/role..." class="search-input">
+    <div id="userListAdmin" class="data-list">
+      <p>Nenhum usuário cadastrado.</p>
+    </div>
+  </section>
+
+  <div id="adminUserModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h3 id="adminUserModalTitle"></h3>
+      <form id="adminUserForm">
+        <input type="hidden" id="adminUserIdHidden">
+        <div class="form-group">
+          <label for="adminUserName">Nome:</label>
+          <input type="text" id="adminUserName" name="nome" required>
+        </div>
+        <div class="form-group">
+          <label for="adminUserEmail">E-mail:</label>
+          <input type="email" id="adminUserEmail" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="adminUserSenha">Senha:</label>
+          <input type="password" id="adminUserSenha" name="senha">
+          <small>Deixe em branco para não alterar a senha.</small>
+        </div>
+        <div class="form-group">
+          <label for="adminUserRole">Tipo de Usuário:</label>
+          <select id="adminUserRole" name="role" required>
+            <option value="cliente">Cliente</option>
+            <option value="veterinario">Veterinário</option>
+            <option value="secretario">Secretário</option>
+            <option value="admin">Administrador</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="adminUserTelefone">Telefone:</label>
+          <input type="text" id="adminUserTelefone" name="telefone">
+        </div>
+        <div class="form-group">
+          <label for="adminUserEndereco">Endereço:</label>
+          <input type="text" id="adminUserEndereco" name="endereco">
+        </div>
+        <button type="submit" class="btn btn-primary"></button>
+        <div id="adminUserMessage" class="message"></div>
+      </form>
+    </div>
+  </div>
+
+</div>
+<script type="module" src="./js/auth.js"></script>
+<script type="module" src="./js/script.js"></script>
+<script type="module" src="./js/adminDashboard.js"></script>
+</body>
+</html>

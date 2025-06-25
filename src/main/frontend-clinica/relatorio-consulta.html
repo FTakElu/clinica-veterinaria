@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatórios de Consulta - Clínica Pet</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="logo">Secretário Dashboard</div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="secretario-dashboard.html"><i class="fas fa-home"></i> Início</a></li>
+        <li><a href="agendar-consulta.html"><i class="fas fa-calendar-alt"></i> Agendar Nova Consulta</a></li>
+        <li><a href="#"><i class="fas fa-users"></i> Gerenciar Clientes</a></li>
+        <li><a href="#"><i class="fas fa-paw"></i> Gerenciar Pets</a></li>
+        <li><a href="#"><i class="fas fa-calendar-check"></i> Visualizar Agendamentos</a></li>
+        <li><a href="gerenciar-tipos-vacina.html"><i class="fas fa-syringe"></i> Tipos de Vacina</a></li>
+        <li><a href="relatorio-consulta.html"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
+        <li><a href="#" id="logoutButton"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="dashboard-content">
+    <header class="dashboard-header">
+      <h1>Relatórios de Consulta</h1>
+    </header>
+
+    <section class="dashboard-section">
+      <h2>Gerar Relatório por Período</h2>
+      <form id="relatorioConsultaForm" class="form-relatorio">
+        <div class="form-group">
+          <label for="dataInicio">Data de Início:</label>
+          <input type="date" id="dataInicio" name="dataInicio" required>
+        </div>
+        <div class="form-group">
+          <label for="dataFim">Data de Fim:</label>
+          <input type="date" id="dataFim" name="dataFim" required>
+        </div>
+        <button type="submit" class="btn-primary">Gerar Relatório</button>
+      </form>
+
+      <div id="relatorioResultados" class="relatorio-resultados">
+        <h3>Resultados do Relatório</h3>
+        <p>Nenhum relatório gerado.</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/common.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/registrarVacina.js"></script> </body>
+</html>

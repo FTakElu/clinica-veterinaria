@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciar Tipos de Vacina - Secretário - Clínica Pet</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<header>
+  <nav>
+    <h1>Clínica Pet</h1>
+    <ul>
+      <li><a href="#" id="welcomeMessage"></a></li>
+      <li><a href="secretario-dashboard.html">Dashboard</a></li>
+      <li><a href="#" id="logoutBtn">Sair</a></li>
+    </ul>
+  </nav>
+</header>
+<div class="container">
+  <h2>Gerenciar Tipos de Vacina</h2>
+
+  <section id="gerenciar-tipos-vacina-section" class="dashboard-section">
+    <h3>Tipos de Vacina Cadastrados</h3>
+    <button class="btn btn-primary" id="addTipoVacinaBtn">Cadastrar Novo Tipo de Vacina</button>
+
+    <h4>Lista de Tipos de Vacina</h4>
+    <input type="text" id="tipoVacinaSearch" placeholder="Buscar tipo de vacina por nome..." class="search-input">
+    <div id="tipoVacinaList" class="data-list">
+      <p>Nenhum tipo de vacina cadastrado.</p>
+    </div>
+  </section>
+
+  <div id="tipoVacinaModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h3 id="tipoVacinaModalTitle"></h3>
+      <form id="tipoVacinaForm">
+        <input type="hidden" id="tipoVacinaIdHidden">
+        <div class="form-group">
+          <label for="tipoVacinaNome">Nome da Vacina:</label>
+          <input type="text" id="tipoVacinaNome" name="nome" required>
+        </div>
+        <div class="form-group">
+          <label for="tipoVacinaDescricao">Descrição:</label>
+          <textarea id="tipoVacinaDescricao" name="descricao" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary"></button>
+        <div id="tipoVacinaMessage" class="message"></div>
+      </form>
+    </div>
+  </div>
+
+</div>
+<script type="module" src="./js/auth.js"></script>
+<script type="module" src="./js/script.js"></script>
+<script type="module" src="./js/gerenciarTiposVacina.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciar Usuários - Secretário - Clínica Pet</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<header>
+  <nav>
+    <h1>Clínica Pet</h1>
+    <ul>
+      <li><a href="#" id="welcomeMessage"></a></li>
+      <li><a href="secretario-dashboard.html">Dashboard</a></li>
+      <li><a href="#" id="logoutBtn">Sair</a></li>
+    </ul>
+  </nav>
+</header>
+<div class="container">
+  <h2>Gerenciar Usuários</h2>
+
+  <section id="gerenciar-usuarios-section" class="dashboard-section">
+    <h3>Clientes e Veterinários</h3>
+    <button class="btn btn-primary" id="addClientBtn">Cadastrar Novo Cliente</button>
+    <button class="btn btn-primary" id="addVeterinarioBtn">Cadastrar Novo Veterinário</button>
+
+    <h4>Lista de Usuários</h4>
+    <input type="text" id="userSearch" placeholder="Buscar usuário por nome/email..." class="search-input">
+    <div id="userList" class="data-list">
+      <p>Nenhum usuário cadastrado.</p>
+    </div>
+  </section>
+
+  <div id="userModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h3 id="userModalTitle"></h3>
+      <form id="userForm">
+        <input type="hidden" id="userIdHidden">
+        <div class="form-group">
+          <label for="userName">Nome:</label>
+          <input type="text" id="userName" name="nome" required>
+        </div>
+        <div class="form-group">
+          <label for="userEmail">E-mail:</label>
+          <input type="email" id="userEmail" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="userSenha">Senha:</label>
+          <input type="password" id="userSenha" name="senha">
+          <small>Deixe em branco para não alterar a senha.</small>
+        </div>
+        <div class="form-group">
+          <label for="userRole">Tipo de Usuário:</label>
+          <select id="userRole" name="role" required disabled>
+            <option value="cliente">Cliente</option>
+            <option value="veterinario">Veterinário</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="userTelefone">Telefone:</label>
+          <input type="text" id="userTelefone" name="telefone">
+        </div>
+        <div class="form-group">
+          <label for="userEndereco">Endereço:</label>
+          <input type="text" id="userEndereco" name="endereco">
+        </div>
+        <button type="submit" class="btn btn-primary"></button>
+        <div id="userMessage" class="message"></div>
+      </form>
+    </div>
+  </div>
+
+</div>
+<script type="module" src="./js/auth.js"></script>
+<script type="module" src="./js/script.js"></script>
+<script type="module" src="./js/gerenciarUsuarios.js"></script>
+</body>
+</html>

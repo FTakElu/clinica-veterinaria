@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - Cliente - Clínica Pet</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<header>
+    <nav>
+        <h1>Clínica Pet</h1>
+        <ul>
+            <li><a href="#" id="welcomeMessage"></a></li>
+            <li><a href="cliente-dashboard.html">Dashboard</a></li>
+            <li><a href="#" id="logoutBtn">Sair</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="container">
+    <h2>Meu Perfil</h2>
+
+    <section id="meus-dados-section" class="dashboard-section">
+        <h3>Minhas Informações</h3>
+        <div id="userData">
+            <p><strong>Nome:</strong> <span id="userNome"></span></p>
+            <p><strong>Email:</strong> <span id="userEmail"></span></p>
+            <p><strong>Telefone:</strong> <span id="userTelefone"></span></p>
+            <p><strong>Endereço:</strong> <span id="userEndereco"></span></p>
+        </div>
+        <button class="btn btn-secondary" id="editProfileBtn">Editar Perfil</button>
+    </section>
+
+    <div id="editProfileModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3>Editar Meu Perfil</h3>
+            <form id="editProfileForm">
+                <div class="form-group">
+                    <label for="editNome">Nome:</label>
+                    <input type="text" id="editNome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="editEmail">E-mail:</label>
+                    <input type="email" id="editEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="editTelefone">Telefone:</label>
+                    <input type="text" id="editTelefone" name="telefone">
+                </div>
+                <div class="form-group">
+                    <label for="editEndereco">Endereço:</label>
+                    <input type="text" id="editEndereco" name="endereco">
+                </div>
+                <div class="form-group">
+                    <label for="editSenha">Nova Senha (opcional):</label>
+                    <input type="password" id="editSenha" name="senha">
+                </div>
+                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                <div id="editProfileMessage" class="message"></div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<script type="module" src="./js/auth.js"></script>
+<script type="module" src="./js/script.js"></script>
+<script type="module" src="./js/perfilCliente.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard do Cliente - Clínica Pet</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div class="dashboard-layout">
+    <aside class="sidebar">
+        <div class="logo">Cliente Dashboard</div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="cliente-dashboard.html"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="agendar-consulta.html"><i class="fas fa-calendar-alt"></i> Agendar Consulta</a></li>
+                <li><a href="meus-pets.html"><i class="fas fa-paw"></i> Meus Pets</a></li>
+                <li><a href="#" id="logoutButton"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="dashboard-content">
+        <header class="dashboard-header">
+            <h1>Bem-vindo(a), <span id="clienteNome"></span>!</h1>
+        </header>
+
+        <section class="dashboard-section">
+            <h2>Próximas Consultas</h2>
+            <div id="proximasConsultas" class="consultas-list">
+                <p>Carregando suas próximas consultas...</p>
+            </div>
+        </section>
+
+        <section class="dashboard-section">
+            <h2>Meus Pets</h2>
+            <div id="meusPets" class="pets-list">
+                <p>Carregando seus pets...</p>
+            </div>
+            <a href="meus-pets.html" class="btn-secondary">Ver Todos os Pets</a>
+        </section>
+</div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/common.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/cadastroCliente.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minhas Consultas - Cliente - Clínica Pet</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<header>
+  <nav>
+    <h1>Clínica Pet</h1>
+    <ul>
+      <li><a href="#" id="welcomeMessage"></a></li>
+      <li><a href="cliente-dashboard.html">Dashboard</a></li>
+      <li><a href="#" id="logoutBtn">Sair</a></li>
+    </ul>
+  </nav>
+</header>
+<div class="container">
+  <h2>Minhas Consultas</h2>
+
+  <section id="minhas-consultas-section" class="dashboard-section">
+    <h3>Suas Consultas Agendadas e Concluídas</h3>
+    <div id="consultaList" class="data-list">
+      <p>Nenhuma consulta agendada.</p>
+    </div>
+    <a href="agendar-consulta.html" class="btn btn-primary">Agendar Nova Consulta</a>
+  </section>
+
+  <div id="viewReportModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h3>Detalhes da Consulta e Relatório</h3>
+      <div id="reportDetailsContent">
+        <p><strong>Data/Hora:</strong> <span id="reportConsultaDataHora"></span></p>
+        <p><strong>Pet:</strong> <span id="reportConsultaPet"></span></p>
+        <p><strong>Veterinário:</strong> <span id="reportConsultaVeterinario"></span></p>
+        <p><strong>Motivo:</strong> <span id="reportConsultaMotivo"></span></p>
+        <p><strong>Status:</strong> <span id="reportConsultaStatus"></span></p>
+        <h4>Relatório:</h4>
+        <p id="reportDescription"></p>
+        <h4>Vacinas Aplicadas (ao pet desta consulta):</h4>
+        <ul id="vacinasAplicadasList">
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script type="module" src="./js/auth.js"></script>
+<script type="module" src="./js/script.js"></script>
+<script type="module" src="./js/minhasConsultas.js"></script>
+</body>
+</html>
